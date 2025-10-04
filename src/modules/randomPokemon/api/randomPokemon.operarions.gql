@@ -1,0 +1,20 @@
+query GetPokemonSpecies(
+  $where: pokemonspecies_bool_exp
+  $orderBy: [pokemonspecies_order_by!]
+) {
+  pokemonspecies(where: $where, order_by: $orderBy) {
+    name
+    id
+    generation {
+      name
+    }
+  }
+  generations: generation {
+    name
+    pokemon_species: pokemonspecies_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import React, { FC } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { MainTabScreenProps } from "../../navigation/types";
+import { useGetPokemonSpeciesQuery } from "./api/randomPokemon.operarions.generated";
 import { CreatureCard } from "./components";
 
 export const RandomPokemonScreen: FC<MainTabScreenProps<"Random">> = ({
@@ -11,6 +12,15 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<"Random">> = ({
   route,
 }) => {
   const { bottom } = useSafeAreaInsets();
+
+  const { data, loading, error } = useGetPokemonSpeciesQuery();
+
+  //   useEffect(() => {
+  //     if (data) {
+  //       console.log(data);
+  //     }
+  //   }, [data]);
+
   return (
     <GradientBackground style={{ paddingBottom: bottom }}>
       <AppHeader />
