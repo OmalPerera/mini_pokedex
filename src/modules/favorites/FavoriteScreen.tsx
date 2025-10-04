@@ -2,13 +2,13 @@ import React from "react";
 import { ScrollView, StyleSheet, Text } from "react-native";
 import type { MainTabScreenProps } from "../../navigation/types";
 
-type Props = MainTabScreenProps<"Home">;
+type Props = MainTabScreenProps<"Favorites">;
 
-export function HomeScreen({ navigation, route }: Props) {
+export function FavoritesScreen({ navigation, route }: Props) {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Text style={styles.title}>Home</Text>
-      <Text style={styles.subtitle}>Welcome to your Pokémon app!</Text>
+      <Text style={styles.title}>Favorites</Text>
+      <Text style={styles.subtitle}>Your favorite Pokémon here!</Text>
     </ScrollView>
   );
 }

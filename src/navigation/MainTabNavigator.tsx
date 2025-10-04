@@ -1,7 +1,9 @@
+import { FavoriteIcon, Pokeball } from "@/assets";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import { ExploreScreen, HomeScreen } from "../modules";
+import { ExploreScreen, RandomPokemonScreen } from "../modules";
+import { FavoritesScreen } from "../modules/favorites/FavoriteScreen";
 import { colors } from "../utils/theme";
 import { TabBarButton } from "./components";
 import type { MainTabParamList } from "./types";
@@ -13,21 +15,26 @@ export function MainTabNavigator() {
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: colors.tint,
-        tabBarInactiveTintColor: colors.tabIconDefault,
+        tabBarInactiveTintColor: colors.grey_700,
         headerShown: false,
         tabBarButton: TabBarButton,
         tabBarStyle: {
-          backgroundColor: colors.background,
+          paddingTop: 6,
+          backgroundColor: colors.primary_white,
+        },
+        tabBarLabelStyle: {
+          marginTop: 2,
+          fontSize: 12,
         },
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="Random"
+        component={RandomPokemonScreen}
         options={{
-          title: "Home",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size ?? 28} color={color} />
+          title: "Daily",
+          tabBarIcon: ({ focused }) => (
+            <Pokeball size={28} isFocused={focused} />
           ),
         }}
       />
@@ -36,8 +43,22 @@ export function MainTabNavigator() {
         component={ExploreScreen}
         options={{
           title: "Explore",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" size={size ?? 28} color={color} />
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name="search"
+              size={28}
+              color={focused ? colors.red_700 : colors.grey_700}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{
+          title: "Favorites",
+          tabBarIcon: ({ focused }) => (
+            <FavoriteIcon size={28} isFocused={focused} />
           ),
         }}
       />

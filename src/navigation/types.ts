@@ -7,8 +7,9 @@ export type RootStackParamList = {
 };
 
 export type MainTabParamList = {
-  Home: undefined;
+  Random: undefined;
   Explore: undefined;
+  Favorites: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

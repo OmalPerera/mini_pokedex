@@ -1,0 +1,1 @@
+export { RandomPokemonScreen } from "./HomeScreen";

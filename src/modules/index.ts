@@ -1,2 +1,2 @@
 export { ExploreScreen } from "./explore";
-export { HomeScreen } from "./home";
+export { RandomPokemonScreen } from "./randomPokemon";
