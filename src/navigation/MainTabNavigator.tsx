@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { ExploreScreen, RandomPokemonScreen } from "../modules";
 import { FavoritesScreen } from "../modules/favorites/FavoriteScreen";
-import { colors } from "../utils/theme";
+import { colors } from "../ui/theme";
 import { TabBarButton } from "./components";
 import type { MainTabParamList } from "./types";
 

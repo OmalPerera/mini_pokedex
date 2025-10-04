@@ -5,8 +5,6 @@ export const colors = {
   background: "#fff",
   tint: "#29272A",
   icon: "#687076",
-  tabIconDefault: "#687076",
-  tabIconSelected: "#0a7ea4",
   //grey
   grey_100: "#ffffff",
   grey_200: "#f6f6f6",
@@ -27,4 +25,10 @@ export const colors = {
   red_500: "#cb4b3a",
   red_600: "#4d1b14",
   red_700: "#FF1C1C",
+  //blue
+  blue_100: "#9AD9E8",
+  blue_200: "#3D97E6",
+  //green
+  green_100: "#C5EAD5",
+  green_200: "#61C36C",
 };

@@ -1,1 +1,1 @@
-export { RandomPokemonScreen } from "./HomeScreen";
+export { RandomPokemonScreen } from "./RandomPokemonScreen";
