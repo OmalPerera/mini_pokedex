@@ -3,19 +3,21 @@ import React, {FC, useEffect, useMemo} from 'react'
 import {ScrollView, StyleSheet} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import type {MainTabScreenProps} from '../../navigation/types'
-import {useGetPokemonSpeciesLazyQuery} from './api/randomPokemon.operarions.generated'
+import {useGetPokemonByIdLazyQuery} from './api/randomPokemon.operations.generated'
 import {CreatureCard} from './components'
 import {getRandomInt} from './utils/getRandomId'
 
-export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = () => {
+export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = ({
+  navigation,
+}) => {
   const {bottom} = useSafeAreaInsets()
 
-  const [fetchRandomPokemon, {data, loading, error}] =
-    useGetPokemonSpeciesLazyQuery()
+  const [fetchPokemonById, {data, loading, error}] =
+    useGetPokemonByIdLazyQuery()
 
   const doFetchRandomPokemon = () => {
     const randomId = getRandomInt()
-    fetchRandomPokemon({
+    fetchPokemonById({
       variables: {
         where: {id: {_eq: randomId}},
       },
@@ -28,16 +30,15 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = () => {
   }, [])
 
   const pokemonInfo = useMemo(() => {
-    const _pokemon = data?.pokemonspecies[0]
+    const _pokemon = data?.pokemon[0]
     if (!_pokemon) {
       return null
     }
     return {
       id: _pokemon.id,
       name: _pokemon.name,
-      generation: _pokemon.generation?.name,
-      image: _pokemon.pokemons[0].pokemonsprites[0].artwork || '',
-      type: _pokemon.pokemons[0].pokemontypes[0].type?.name,
+      image: _pokemon.pokemonsprites[0].artwork || '',
+      type: _pokemon.pokemontypes[0].type?.name,
     }
   }, [data])
 
@@ -50,8 +51,8 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = () => {
           image={pokemonInfo?.image.toString()}
           isFavorite={false}
           type={pokemonInfo?.type}
-          onPressLearnMore={() => console.log('Learn More Pressed')}
           onPressFavorite={() => console.log('Favorite Pressed')}
+          onPressLearnMore={() => navigation.navigate('PokemonDetailScreen')}
           onPressAnotherOne={doFetchRandomPokemon}
         />
       </ScrollView>
