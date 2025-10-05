@@ -2,7 +2,6 @@ import {AppHeader, GradientBackground} from '@/src/ui/components'
 import * as Haptics from 'expo-haptics'
 import React, {FC, useEffect, useMemo} from 'react'
 import {ScrollView, StyleSheet} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import type {MainTabScreenProps} from '../../navigation/types'
 import {useGetPokemonByIdLazyQuery} from './api/dailyPokemon.operations.generated'
 import {CreatureCard} from './components'
@@ -11,8 +10,6 @@ import {getRandomInt} from './utils/getRandomId'
 export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = ({
   navigation,
 }) => {
-  const {bottom} = useSafeAreaInsets()
-
   const [fetchPokemonById, {data, loading, error}] =
     useGetPokemonByIdLazyQuery()
 
@@ -54,7 +51,7 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = ({
   }
 
   return (
-    <GradientBackground style={{paddingBottom: bottom}}>
+    <GradientBackground>
       <AppHeader />
       <ScrollView contentContainerStyle={styles.content}>
         <CreatureCard
