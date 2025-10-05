@@ -35,7 +35,12 @@ export const CreatureCard: FC<Props> = ({
         isFavorite={isFavorite}
         onPressFavorite={onPressFavorite}
       />
-      <CreatureBasicInfo pokemonImage={image} name={name} type={type} />
+      <CreatureBasicInfo
+        pokemonImage={image}
+        name={name}
+        type={type}
+        onPress={onPressLearnMore}
+      />
       <CardActionButton
         title="Learn More"
         onPress={onPressLearnMore}

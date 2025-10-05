@@ -29,6 +29,10 @@ class PokedexStore {
   getFavoriteList(): PokemonDetailsFragment[] | undefined {
     return this._favoriteList
   }
+
+  getFavoriteItemsIds(): number[] {
+    return this._favoriteList?.map(item => item.id) || []
+  }
 }
 
 export const pokedexStore = new PokedexStore()

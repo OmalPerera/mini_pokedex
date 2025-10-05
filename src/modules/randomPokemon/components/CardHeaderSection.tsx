@@ -1,3 +1,4 @@
+import {AnimatedFavoriteIcon} from '@/src/ui/components'
 import {colors} from '@/src/ui/theme'
 import {Ionicons} from '@expo/vector-icons'
 import React, {FC, memo} from 'react'
@@ -14,13 +15,11 @@ export const CardHeaderSection: FC<Props> = memo(
     return (
       <View style={styles.header}>
         <Text style={styles.title}>{headerTitle}</Text>
-        <TouchableOpacity hitSlop={24} onPress={onPressFavorite}>
-          {isFavorite ? (
-            <Ionicons name="heart" size={26} color={colors.red_700} />
-          ) : (
-            <Ionicons name="heart-outline" size={26} color={colors.grey_950} />
-          )}
-        </TouchableOpacity>
+        <AnimatedFavoriteIcon
+          isFavorite={isFavorite}
+          onPressFavorite={onPressFavorite}
+          size={32}
+        />
       </View>
     )
   },

@@ -1,5 +1,5 @@
 import {RootStackScreenProps} from '@/src/navigation'
-import {GradientBackground} from '@/src/ui/components'
+import {AnimatedFavoriteIcon, GradientBackground} from '@/src/ui/components'
 import {colors} from '@/src/ui/theme'
 import {Ionicons} from '@expo/vector-icons'
 import * as Haptics from 'expo-haptics'
@@ -12,15 +12,31 @@ import {
   StatsSection,
 } from './components'
 import {formatPokemonForUI} from '@/src/utils'
+import {observer} from 'mobx-react-lite'
+import {pokedexStore} from '@/src/store/pokedex.store'
+import {useTogglePokemonFavorite} from '../hooks'
 
 export const PokemonDetailScreen: FC<
   RootStackScreenProps<'PokemonDetailScreen'>
-> = ({navigation, route}) => {
+> = observer(({navigation, route}) => {
   const {id, details} = route.params
+
+  const favoriteItemsIds = pokedexStore.getFavoriteItemsIds()
+
+  const {toggleFavorite} = useTogglePokemonFavorite()
+
+  const isFavorite = useMemo(
+    () => favoriteItemsIds.includes(details?.id || 0),
+    [favoriteItemsIds, details?.id],
+  )
 
   const handleClose = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     navigation.goBack()
+  }
+
+  const handlePressFavorite = () => {
+    toggleFavorite({isFavorite, details})
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,7 +55,8 @@ export const PokemonDetailScreen: FC<
           name={_details.name}
           image={_details.image}
           type={_details.type}
-          isFavorite={true}
+          isFavorite={isFavorite}
+          onPressFavorite={handlePressFavorite}
           about={_details.about}
         />
         <CharacteristicsSection
@@ -54,7 +71,7 @@ export const PokemonDetailScreen: FC<
       </ScrollView>
     </GradientBackground>
   )
-}
+})
 
 const styles = StyleSheet.create({
   content: {

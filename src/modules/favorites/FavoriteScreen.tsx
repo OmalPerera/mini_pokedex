@@ -13,10 +13,13 @@ import {pokedexStore} from '@/src/store/pokedex.store'
 import {formatPokemonForUI} from '@/src/utils'
 import Animated, {LinearTransition} from 'react-native-reanimated'
 import * as Haptics from 'expo-haptics'
+import {useTogglePokemonFavorite} from '../common/hooks'
 
 export const FavoritesScreen: FC<MainTabScreenProps<'Favorites'>> = observer(
   ({navigation}) => {
     const favoriteList = pokedexStore.getFavoriteList()
+
+    const {toggleFavorite} = useTogglePokemonFavorite()
 
     const listItemAnimation = LinearTransition.springify().damping(85)
 
@@ -25,8 +28,11 @@ export const FavoritesScreen: FC<MainTabScreenProps<'Favorites'>> = observer(
     )
 
     const handlePressFavorite = (id: number) => {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-      pokedexStore.removeFromFavorites(id)
+      const item = favoriteList?.find(item => item.id === id)
+      toggleFavorite({
+        isFavorite: true,
+        details: item,
+      })
     }
 
     const handlePressItem = (id: number) => {
@@ -48,7 +54,7 @@ export const FavoritesScreen: FC<MainTabScreenProps<'Favorites'>> = observer(
         <Animated.FlatList
           itemLayoutAnimation={listItemAnimation}
           contentContainerStyle={styles.listViewStyles}
-          data={formattedFavoriteList}
+          data={formattedFavoriteList?.reverse()}
           keyExtractor={item => item.id.toString()}
           ListHeaderComponent={
             <FavoriteListHeader

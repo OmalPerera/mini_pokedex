@@ -1,22 +1,32 @@
 import {FavoriteIcon, Pokeball} from '@/assets/svg'
+import {AnimatedFavoriteIcon} from '@/src/ui/components'
 import {colors} from '@/src/ui/theme'
 import {setOpacity} from '@/src/utils'
 import {FC, memo} from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
 
+const FAVORITE_ICON_SIZE = 40
 interface Props {
   name?: string
   image?: string
   type?: string
   isFavorite?: boolean
   about?: string
+  onPressFavorite?: () => void
 }
 export const OverviewSection: FC<Props> = memo(
-  ({name, image, type, isFavorite, about}) => {
+  ({name, image, type, isFavorite, about, onPressFavorite}) => {
     return (
       <>
         <Image source={{uri: image}} style={styles.pokemonImage} />
-        <Text style={styles.pokemonName}>{name}</Text>
+        <View style={styles.pokemonNameContainer}>
+          <Text style={styles.pokemonName}>{name}</Text>
+          <AnimatedFavoriteIcon
+            isFavorite={isFavorite}
+            onPressFavorite={onPressFavorite}
+            size={FAVORITE_ICON_SIZE}
+          />
+        </View>
         <Text style={styles.pokemonType}>{type}</Text>
         {about && (
           <View style={styles.aboutSection}>
@@ -42,7 +52,13 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: colors.blue_900,
+  },
+  pokemonNameContainer: {
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
     marginTop: 10,
+    marginEnd: -FAVORITE_ICON_SIZE,
   },
   pokemonType: {
     fontSize: 18,

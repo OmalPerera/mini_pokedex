@@ -3,6 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {colors} from '@/src/ui/theme'
 import {setOpacity} from '@/src/utils'
 import {FavoriteIcon} from '@/assets/svg/FavoriteIcon'
+import {AnimatedFavoriteIcon} from '@/src/ui/components'
 
 interface Props {
   name?: string
@@ -28,12 +29,11 @@ export const FavoriteCard: FC<Props> = ({
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.type}>{type}</Text>
       </View>
-      <TouchableOpacity
-        onPress={onPressFavorite}
-        hitSlop={20}
-        style={styles.favoriteButton}>
-        <FavoriteIcon isFocused={isFavorite} size={24} />
-      </TouchableOpacity>
+      <AnimatedFavoriteIcon
+        isFavorite={isFavorite}
+        onPressFavorite={onPressFavorite}
+        size={32}
+      />
     </TouchableOpacity>
   )
 }
@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
     backgroundColor: setOpacity(colors.primary_white)(0.8),
     borderRadius: 16,
     paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingStart: 16,
+    paddingEnd: 20,
     marginVertical: 6,
     shadowColor: colors.primary_black,
     shadowOffset: {width: 0, height: 2},
