@@ -3,7 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {colors} from '@/src/ui/theme'
 import {setOpacity} from '@/src/utils'
 import {FavoriteIcon} from '@/assets/svg/FavoriteIcon'
-import {AnimatedFavoriteIcon} from '@/src/ui/components'
+import {AnimatedFavoriteIcon} from './AnimatedFavoriteIcon'
 
 interface Props {
   name?: string
@@ -14,7 +14,7 @@ interface Props {
   onPressItem?: () => void
 }
 
-export const FavoriteCard: FC<Props> = ({
+export const ListItemCard: FC<Props> = ({
   name,
   image,
   type,

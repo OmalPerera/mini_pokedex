@@ -1,29 +1,39 @@
-import React from 'react'
-import { ScrollView, StyleSheet, Text } from 'react-native'
+import {AppHeader, GradientBackground, SearchBox} from '@/src/ui/components'
+import React, {useState} from 'react'
+import {FlatList, ScrollView, StyleSheet, Text} from 'react-native'
+import Animated from 'react-native-reanimated'
+import {PopularPokemonSection} from './PopularPokemon/components/PopularPokemonSection'
 
 export function ExploreScreen() {
+  const [searchString, setSearchString] = useState('')
+
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Text style={styles.title}>Explore</Text>
-      <Text style={styles.subtitle}>Discover new Pokémon here!</Text>
-    </ScrollView>
+    <GradientBackground>
+      <AppHeader />
+      <SearchBox style={styles.searchBoxStyles} onSearch={setSearchString} />
+      <FlatList
+        contentContainerStyle={styles.listViewStyles}
+        data={['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
+        ListHeaderComponent={
+          <PopularPokemonSection isVisible={!Boolean(searchString)} />
+        }
+        renderItem={({item}) => <Text>{'searchString'}</Text>}
+        //keyExtractor={item => item.id}
+      />
+    </GradientBackground>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollViewContent: {
+    flexGrow: 1,
   },
-  content: {
+  listViewStyles: {
     padding: 16,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  searchBoxStyles: {
+    marginHorizontal: 16,
+    marginTop: 28,
     marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
   },
 })
