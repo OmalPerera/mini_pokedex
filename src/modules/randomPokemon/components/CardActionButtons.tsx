@@ -1,5 +1,5 @@
-import { colors } from '@/src/ui/theme'
-import React, { FC, memo } from 'react'
+import {colors} from '@/src/ui/theme'
+import React, {FC, memo} from 'react'
 import {
   ColorValue,
   StyleSheet,
@@ -9,23 +9,22 @@ import {
 } from 'react-native'
 
 interface CardActionButtonProps {
-  title?: string;
-  onPress?: () => void;
-  backgroundColor: ColorValue;
-  style?: ViewStyle;
+  title?: string
+  onPress?: () => void
+  backgroundColor: ColorValue
+  style?: ViewStyle
 }
 
 export const CardActionButton: FC<CardActionButtonProps> = memo(
-  ({ title, onPress, backgroundColor = colors.primary_black, style }) => {
+  ({title, onPress, backgroundColor = colors.primary_black, style}) => {
     return (
       <TouchableOpacity
         onPress={onPress}
-        style={[styles.button, { backgroundColor }, styles.buttonShadow, style]}
-      >
+        style={[styles.button, {backgroundColor}, styles.buttonShadow, style]}>
         <Text style={styles.buttonText}>{title}</Text>
       </TouchableOpacity>
     )
-  }
+  },
 )
 
 CardActionButton.displayName = 'CardActionButton'
@@ -33,7 +32,7 @@ CardActionButton.displayName = 'CardActionButton'
 const styles = StyleSheet.create({
   buttonShadow: {
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 3,
@@ -43,6 +42,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 72,
     alignItems: 'center',
+    marginTop: 10,
     marginBottom: 15,
   },
   buttonText: {

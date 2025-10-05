@@ -1,16 +1,16 @@
-import { colors } from '@/src/ui/theme'
-import { Ionicons } from '@expo/vector-icons'
-import React, { FC, memo } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {colors} from '@/src/ui/theme'
+import {Ionicons} from '@expo/vector-icons'
+import React, {FC, memo} from 'react'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 
 interface Props {
-  headerTitle?: string;
-  isFavorite?: boolean;
-  onPressFavorite?: () => void;
+  headerTitle?: string
+  isFavorite?: boolean
+  onPressFavorite?: () => void
 }
 
 export const CardHeaderSection: FC<Props> = memo(
-  ({ headerTitle, isFavorite, onPressFavorite }) => {
+  ({headerTitle, isFavorite, onPressFavorite}) => {
     return (
       <View style={styles.header}>
         <Text style={styles.title}>{headerTitle}</Text>
@@ -23,7 +23,7 @@ export const CardHeaderSection: FC<Props> = memo(
         </TouchableOpacity>
       </View>
     )
-  }
+  },
 )
 
 CardHeaderSection.displayName = 'CardHeaderSection'
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,

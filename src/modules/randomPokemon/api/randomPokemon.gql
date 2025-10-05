@@ -1,0 +1,14 @@
+fragment PokemonTypeFragment on pokemontype {
+  type {
+    name
+  }
+}
+
+fragment PokemonFragment on pokemon {
+  pokemontypes {
+    ...PokemonTypeFragment
+  }
+  pokemonsprites(limit: 1) {
+    artwork: sprites(path: "other.official-artwork.front_default")
+  }
+}

@@ -1,19 +1,19 @@
-import { colors } from '@/src/ui/theme'
-import { setOpacity } from '@/src/utils'
-import { FC } from 'react'
-import { ImageSourcePropType, StyleSheet, View } from 'react-native'
-import { CardActionButton } from './CardActionButtons'
-import { CardHeaderSection } from './CardHeaderSection'
-import { CreatureBasicInfo } from './CreatureBasicInfo'
+import {colors} from '@/src/ui/theme'
+import {setOpacity} from '@/src/utils'
+import {FC} from 'react'
+import {StyleSheet, View} from 'react-native'
+import {CardActionButton} from './CardActionButtons'
+import {CardHeaderSection} from './CardHeaderSection'
+import {CreatureBasicInfo} from './CreatureBasicInfo'
 
 interface Props {
-  name?: string;
-  isFavorite?: boolean;
-  image?: ImageSourcePropType;
-  type?: string;
-  onPressLearnMore?: () => void;
-  onPressFavorite?: () => void;
-  onPressAnotherOne?: () => void;
+  name?: string
+  isFavorite?: boolean
+  image?: string
+  type?: string
+  onPressLearnMore?: () => void
+  onPressFavorite?: () => void
+  onPressAnotherOne?: () => void
 }
 export const CreatureCard: FC<Props> = ({
   name = '',
@@ -28,9 +28,8 @@ export const CreatureCard: FC<Props> = ({
     <View
       style={[
         styles.card,
-        { backgroundColor: setOpacity(colors.primary_white)(0.35) },
-      ]}
-    >
+        {backgroundColor: setOpacity(colors.primary_white)(0.35)},
+      ]}>
       <CardHeaderSection
         headerTitle="Daily Pokémon"
         isFavorite={isFavorite}
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     width: '90%',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 5,

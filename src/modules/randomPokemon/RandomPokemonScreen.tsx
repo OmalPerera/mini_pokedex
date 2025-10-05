@@ -1,27 +1,43 @@
-import {images} from '@/assets/images'
 import {AppHeader, GradientBackground} from '@/src/ui/components'
-import React, {FC, useEffect} from 'react'
+import React, {FC, useEffect, useMemo} from 'react'
 import {ScrollView, StyleSheet} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import type {MainTabScreenProps} from '../../navigation/types'
-import {useGetPokedexQuery} from './api/randomPokemon.operarions.generated'
+import {useGetPokemonSpeciesLazyQuery} from './api/randomPokemon.operarions.generated'
 import {CreatureCard} from './components'
+import {getRandomInt} from './utils/getRandomId'
 
 export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = () => {
   const {bottom} = useSafeAreaInsets()
 
-  //const { data, loading, error } = useGetPokemonSpeciesQuery()
+  const [fetchRandomPokemon, {data, loading, error}] =
+    useGetPokemonSpeciesLazyQuery()
 
-  const {data} = useGetPokedexQuery({
-    variables: {
-      limit: 10,
-      offset: 0,
-    },
-  })
+  const doFetchRandomPokemon = () => {
+    const randomId = getRandomInt()
+    fetchRandomPokemon({
+      variables: {
+        where: {id: {_eq: randomId}},
+      },
+    })
+  }
 
   useEffect(() => {
-    if (data) {
-      //console.log(JSON.stringify(data, null, 2))
+    doFetchRandomPokemon()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const pokemonInfo = useMemo(() => {
+    const _pokemon = data?.pokemonspecies[0]
+    if (!_pokemon) {
+      return null
+    }
+    return {
+      id: _pokemon.id,
+      name: _pokemon.name,
+      generation: _pokemon.generation?.name,
+      image: _pokemon.pokemons[0].pokemonsprites[0].artwork || '',
+      type: _pokemon.pokemons[0].pokemontypes[0].type?.name,
     }
   }, [data])
 
@@ -30,13 +46,13 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = () => {
       <AppHeader />
       <ScrollView contentContainerStyle={styles.content}>
         <CreatureCard
-          name="Pikachu"
-          image={images.pikachu}
+          name={pokemonInfo?.name}
+          image={pokemonInfo?.image.toString()}
           isFavorite={false}
-          type="Electric"
+          type={pokemonInfo?.type}
           onPressLearnMore={() => console.log('Learn More Pressed')}
           onPressFavorite={() => console.log('Favorite Pressed')}
-          onPressAnotherOne={() => console.log('Another One Pressed')}
+          onPressAnotherOne={doFetchRandomPokemon}
         />
       </ScrollView>
     </GradientBackground>

@@ -8,25 +8,8 @@ query GetPokemonSpecies(
     generation {
       name
     }
-  }
-  generations: generation {
-    name
-    pokemon_species: pokemonspecies_aggregate {
-      aggregate {
-        count
-      }
+    pokemons {
+      ...PokemonFragment
     }
-  }
-}
-
-query GetPokedex(
-  $where: pokedex_bool_exp
-  $orderBy: [pokedex_order_by!]
-  $limit: Int
-  $offset: Int
-) {
-  pokedex(where: $where, order_by: $orderBy, limit: $limit, offset: $offset) {
-    id
-    name
   }
 }
