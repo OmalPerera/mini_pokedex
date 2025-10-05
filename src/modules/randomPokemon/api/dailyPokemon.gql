@@ -1,0 +1,92 @@
+fragment BasicInfoFragment on pokemon {
+  id
+  name
+  height
+  weight
+}
+
+fragment PokemonImageFragment on pokemonsprites {
+  artwork: sprites(path: "other.official-artwork.front_default")
+}
+
+fragment PokemonTypesFragment on pokemontype {
+  type {
+    name
+    typenames(where: {language_id: {_eq: 9}}) {
+      name
+    }
+  }
+}
+
+fragment StatsFragment on pokemonstat {
+  base_stat
+  effort
+  stat {
+    name
+  }
+}
+
+fragment MoveFragment on pokemonmove {
+  move {
+    name
+    accuracy
+    power
+    pp
+    priority
+    movenames(where: {language_id: {_eq: 9}}) {
+      name
+    }
+  }
+}
+
+fragment SpeciesFragment on pokemonspecies {
+  id
+  name
+  evolution_chain_id
+  evolves_from_species_id
+  pokemonspeciesflavortexts(limit: 1, where: {language_id: {_eq: 9}}) {
+    flavor_text
+  }
+  evolutionchain {
+    id
+    pokemonspecies(order_by: {id: asc}) {
+      id
+      name
+      pokemonspeciesnames(where: {language_id: {_eq: 9}}) {
+        name
+      }
+      evolves_from_species_id
+      pokemons(limit: 1) {
+        id
+        name
+        pokemonsprites {
+          artwork: sprites(path: "other.official-artwork.front_default")
+        }
+      }
+    }
+  }
+}
+
+fragment PokemonDetailsFragment on pokemon {
+  ...BasicInfoFragment
+
+  pokemonsprites {
+    ...PokemonImageFragment
+  }
+
+  pokemontypes {
+    ...PokemonTypesFragment
+  }
+
+  pokemonstats {
+    ...StatsFragment
+  }
+
+  pokemonmoves(limit: 10) {
+    ...MoveFragment
+  }
+
+  pokemonspecy {
+    ...SpeciesFragment
+  }
+}

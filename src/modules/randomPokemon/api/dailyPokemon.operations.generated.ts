@@ -1,6 +1,7 @@
 import * as Types from '../../../api/types'
 
 import {gql} from '@apollo/client'
+import {PokemonDetailsFragmentDoc} from './dailyPokemon.generated'
 import * as Apollo from '@apollo/client'
 import * as ApolloReactHooks from '@apollo/client/react'
 const defaultOptions = {} as const
@@ -14,26 +15,71 @@ export type GetPokemonByIdQuery = {
     __typename?: 'pokemon'
     id: number
     name: string
+    height?: number
+    weight?: number
     pokemonsprites: Array<{
       __typename?: 'pokemonsprites'
       artwork: Record<string, unknown>
     }>
     pokemontypes: Array<{
       __typename?: 'pokemontype'
-      type?: {__typename?: 'type'; name: string}
+      type?: {
+        __typename?: 'type'
+        name: string
+        typenames: Array<{__typename?: 'typename'; name: string}>
+      }
+    }>
+    pokemonstats: Array<{
+      __typename?: 'pokemonstat'
+      base_stat: number
+      effort: number
+      stat?: {__typename?: 'stat'; name: string}
     }>
     pokemonmoves: Array<{
       __typename?: 'pokemonmove'
-      move?: {__typename?: 'move'; name: string}
+      move?: {
+        __typename?: 'move'
+        name: string
+        accuracy?: number
+        power?: number
+        pp?: number
+        priority?: number
+        movenames: Array<{__typename?: 'movename'; name: string}>
+      }
     }>
     pokemonspecy?: {
       __typename?: 'pokemonspecies'
+      id: number
+      name: string
       evolution_chain_id?: number
       evolves_from_species_id?: number
       pokemonspeciesflavortexts: Array<{
         __typename?: 'pokemonspeciesflavortext'
         flavor_text: string
       }>
+      evolutionchain?: {
+        __typename?: 'evolutionchain'
+        id: number
+        pokemonspecies: Array<{
+          __typename?: 'pokemonspecies'
+          id: number
+          name: string
+          evolves_from_species_id?: number
+          pokemonspeciesnames: Array<{
+            __typename?: 'pokemonspeciesname'
+            name: string
+          }>
+          pokemons: Array<{
+            __typename?: 'pokemon'
+            id: number
+            name: string
+            pokemonsprites: Array<{
+              __typename?: 'pokemonsprites'
+              artwork: Record<string, unknown>
+            }>
+          }>
+        }>
+      }
     }
   }>
 }
@@ -41,30 +87,10 @@ export type GetPokemonByIdQuery = {
 export const GetPokemonByIdDocument = gql`
   query GetPokemonById($where: pokemon_bool_exp) {
     pokemon(where: $where) {
-      id
-      name
-      pokemonsprites {
-        artwork: sprites(path: "other.official-artwork.front_default")
-      }
-      pokemontypes {
-        type {
-          name
-        }
-      }
-      pokemonmoves(limit: 10) {
-        move {
-          name
-        }
-      }
-      pokemonspecy {
-        evolution_chain_id
-        evolves_from_species_id
-        pokemonspeciesflavortexts(limit: 1, where: {language_id: {_eq: 9}}) {
-          flavor_text
-        }
-      }
+      ...PokemonDetailsFragment
     }
   }
+  ${PokemonDetailsFragmentDoc}
 `
 
 /**

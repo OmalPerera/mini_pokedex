@@ -1,0 +1,5 @@
+query GetPokemonById($where: pokemon_bool_exp) {
+  pokemon(where: $where) {
+    ...PokemonDetailsFragment
+  }
+}

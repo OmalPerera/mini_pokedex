@@ -4,7 +4,7 @@ import React, {FC, useEffect, useMemo} from 'react'
 import {ScrollView, StyleSheet} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import type {MainTabScreenProps} from '../../navigation/types'
-import {useGetPokemonByIdLazyQuery} from './api/randomPokemon.operations.generated'
+import {useGetPokemonByIdLazyQuery} from './api/dailyPokemon.operations.generated'
 import {CreatureCard} from './components'
 import {getRandomInt} from './utils/getRandomId'
 
@@ -33,6 +33,7 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = ({
 
   const pokemonInfo = useMemo(() => {
     const _pokemon = data?.pokemon[0]
+
     if (!_pokemon) {
       return null
     }
@@ -40,13 +41,16 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = ({
       id: _pokemon.id,
       name: _pokemon.name,
       image: _pokemon.pokemonsprites[0].artwork || '',
-      type: _pokemon.pokemontypes[0].type?.name,
+      type: _pokemon.pokemontypes[0]?.type?.typenames[0]?.name,
     }
   }, [data])
 
   const handlePressLearnMore = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    navigation.navigate('PokemonDetailScreen')
+    navigation.navigate('PokemonDetailScreen', {
+      id: pokemonInfo?.id || 1,
+      details: data?.pokemon[0],
+    })
   }
 
   return (

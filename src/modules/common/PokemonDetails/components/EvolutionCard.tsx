@@ -1,19 +1,12 @@
 import {colors} from '@/src/ui/theme'
 import {Ionicons} from '@expo/vector-icons'
 import {FC, memo} from 'react'
-import {
-  Image,
-  ImageSourcePropType,
-  StyleSheet,
-  Text,
-  useWindowDimensions,
-  View,
-} from 'react-native'
+import {Image, StyleSheet, Text, useWindowDimensions, View} from 'react-native'
 
 interface Props {
   index?: number
   name?: string
-  image?: ImageSourcePropType
+  image?: string
   condition?: string
 }
 
@@ -35,7 +28,7 @@ export const EvolutionCard: FC<Props> = memo(
           <View style={styles.evolutionArrow} />
         )}
         <View style={[styles.evolutionCard, {maxWidth: cardWidth}]}>
-          <Image source={image} style={styles.evolutionImage} />
+          <Image source={{uri: image}} style={styles.evolutionImage} />
           <Text style={styles.evolutionName} numberOfLines={1}>
             {name}
           </Text>

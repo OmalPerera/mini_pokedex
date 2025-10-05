@@ -1,23 +1,27 @@
-import {images} from '@/assets/images'
 import {RootStackScreenProps} from '@/src/navigation'
 import {GradientBackground} from '@/src/ui/components'
 import {colors} from '@/src/ui/theme'
 import {Ionicons} from '@expo/vector-icons'
 import * as Haptics from 'expo-haptics'
-import React, {FC} from 'react'
+import React, {FC, useMemo} from 'react'
 import {ScrollView, StyleSheet, TouchableOpacity} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {EvolutionSection, OverviewSection} from './components'
+import {formatPokemonForUI} from './helper'
 
 export const PokemonDetailScreen: FC<
   RootStackScreenProps<'PokemonDetailScreen'>
-> = ({navigation}) => {
+> = ({navigation, route}) => {
   const {bottom} = useSafeAreaInsets()
+  const {id, details} = route.params
 
   const handleClose = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     navigation.goBack()
   }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const _details = useMemo(() => formatPokemonForUI(details), [id])
 
   return (
     <GradientBackground style={{paddingBottom: bottom}}>
@@ -29,27 +33,15 @@ export const PokemonDetailScreen: FC<
       </TouchableOpacity>
       <ScrollView contentContainerStyle={styles.content}>
         <OverviewSection
-          name="Pikachu"
-          type="Electric"
+          name={_details.name}
+          image={_details.image}
+          type={_details.type}
           isFavorite={true}
-          about="Pikachu is friendly, yellow Pokémon that can stores electricity in its red cheek pouches!"
+          about={_details.about}
         />
         <EvolutionSection
           title="Evolution Chain"
-          evolutionChain={[
-            {
-              name: 'Pichu',
-              image: images.pikachu,
-              condition: 'High Friendship',
-            },
-            {
-              name: 'Pikachu',
-              image: images.pikachu,
-              condition: 'Use Thunder Stone',
-            },
-            {name: 'Raichu', image: images.pikachu, condition: ''},
-            {name: 'Raichu', image: images.pikachu, condition: ''},
-          ]}
+          evolutionChain={_details.evolutionChain}
         />
       </ScrollView>
     </GradientBackground>

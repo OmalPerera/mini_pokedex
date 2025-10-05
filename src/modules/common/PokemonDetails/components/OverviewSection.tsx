@@ -1,4 +1,3 @@
-import {images} from '@/assets'
 import {FavoriteIcon, Pokeball} from '@/assets/svg'
 import {colors} from '@/src/ui/theme'
 import {setOpacity} from '@/src/utils'
@@ -7,15 +6,16 @@ import {Image, StyleSheet, Text, View} from 'react-native'
 
 interface Props {
   name?: string
+  image?: string
   type?: string
   isFavorite?: boolean
   about?: string
 }
 export const OverviewSection: FC<Props> = memo(
-  ({name, type, isFavorite, about}) => {
+  ({name, image, type, isFavorite, about}) => {
     return (
       <>
-        <Image source={images.pikachu} style={styles.pokemonImage} />
+        <Image source={{uri: image}} style={styles.pokemonImage} />
         <Text style={styles.pokemonName}>{name}</Text>
         <Text style={styles.pokemonType}>{type}</Text>
         <View style={styles.badgeContainer}>
@@ -41,10 +41,10 @@ OverviewSection.displayName = 'OverviewSection_details'
 
 const styles = StyleSheet.create({
   pokemonImage: {
-    width: 200,
     height: 200,
+    aspectRatio: 1,
     resizeMode: 'contain',
-    marginTop: 20,
+    marginTop: 32,
   },
   pokemonName: {
     fontSize: 32,
@@ -71,10 +71,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   electricBadge: {
-    backgroundColor: '#F7D02C', // Yellow for Electric
+    backgroundColor: '#F7D02C',
   },
   starBadge: {
-    backgroundColor: '#B6A136', // Brownish-yellow for a secondary badge
+    backgroundColor: '#B6A136',
   },
   aboutSection: {
     alignSelf: 'stretch',

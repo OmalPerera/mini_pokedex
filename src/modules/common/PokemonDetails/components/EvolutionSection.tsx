@@ -1,10 +1,9 @@
-import {images} from '@/assets/images'
 import {colors} from '@/src/ui/theme'
 import {setOpacity} from '@/src/utils'
 import {ScrollView, StyleSheet, Text, View} from 'react-native'
 import {EvolutionCard} from './EvolutionCard'
 
-interface EvolutionChain {
+export interface EvolutionChain {
   name: string
   image: string
   condition: string
@@ -12,19 +11,19 @@ interface EvolutionChain {
 
 interface Props {
   title: string
-  evolutionChain: EvolutionChain[]
+  evolutionChain: EvolutionChain[] | undefined
 }
 export const EvolutionSection = ({title, evolutionChain}: Props) => {
   return (
     <View style={styles.evolutionChainSection}>
       <Text style={styles.sectionTitle}>{title}</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {evolutionChain.map((item, index) => (
+        {evolutionChain?.map((item, index) => (
           <EvolutionCard
             key={index}
             index={index}
             name={item.name}
-            image={images.pikachu}
+            image={item.image.toString()}
             condition={item.condition}
           />
         ))}
