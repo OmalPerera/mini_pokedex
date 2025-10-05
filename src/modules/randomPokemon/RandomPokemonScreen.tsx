@@ -6,6 +6,7 @@ import type {MainTabScreenProps} from '../../navigation/types'
 import {useGetPokemonByIdLazyQuery} from './api/dailyPokemon.operations.generated'
 import {CreatureCard} from './components'
 import {getRandomInt} from './utils/getRandomId'
+import {pokedexStore} from '@/src/store/pokedex.store'
 
 export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = ({
   navigation,
@@ -50,6 +51,10 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = ({
     })
   }
 
+  const handlePressFavorite = () => {
+    pokedexStore.addToFavorites(data?.pokemon[0])
+  }
+
   return (
     <GradientBackground>
       <AppHeader />
@@ -59,7 +64,7 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = ({
           image={pokemonInfo?.image.toString()}
           isFavorite={false}
           type={pokemonInfo?.type}
-          onPressFavorite={() => console.log('Favorite Pressed')}
+          onPressFavorite={handlePressFavorite}
           onPressLearnMore={handlePressLearnMore}
           onPressAnotherOne={doFetchRandomPokemon}
         />

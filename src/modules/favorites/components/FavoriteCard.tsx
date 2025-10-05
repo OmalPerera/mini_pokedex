@@ -44,9 +44,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.primary_white,
     borderRadius: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    marginVertical: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    marginVertical: 6,
     shadowColor: colors.primary_black,
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   pokemonImage: {
-    width: 86,
-    height: 86,
+    width: 80,
+    height: 80,
     marginRight: 16,
   },
   infoContainer: {

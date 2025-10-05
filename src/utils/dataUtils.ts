@@ -1,4 +1,4 @@
-import {PokemonDetailsFragment} from '../../randomPokemon/api/dailyPokemon.generated'
+import {PokemonDetailsFragment} from '../modules/randomPokemon/api/dailyPokemon.generated'
 
 export const sanitizeEscapeChars = (text?: string) =>
   text?.replace(/[\n\t\r\f\\]/g, ' ')

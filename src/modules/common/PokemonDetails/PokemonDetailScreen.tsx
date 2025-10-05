@@ -11,7 +11,7 @@ import {
   OverviewSection,
   StatsSection,
 } from './components'
-import {formatPokemonForUI} from './helper'
+import {formatPokemonForUI} from '@/src/utils'
 
 export const PokemonDetailScreen: FC<
   RootStackScreenProps<'PokemonDetailScreen'>
