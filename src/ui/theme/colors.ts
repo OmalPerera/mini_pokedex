@@ -23,6 +23,7 @@ export const colors = {
   red_300: '#e49186',
   red_400: '#da6758',
   red_500: '#cb4b3a',
+  red_550: '#d64531',
   red_600: '#4d1b14',
   red_700: '#FF1C1C',
   //blue
@@ -31,5 +32,5 @@ export const colors = {
   blue_900: '#161F21',
   //green
   green_100: '#C5EAD5',
-  green_200: '#61C36C',
+  green_200: '#4CAF50',
 }

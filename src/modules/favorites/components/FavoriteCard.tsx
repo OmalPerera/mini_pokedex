@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.primary_white,
+    backgroundColor: setOpacity(colors.primary_white)(0.8),
     borderRadius: 16,
     paddingVertical: 8,
     paddingHorizontal: 16,

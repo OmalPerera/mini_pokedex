@@ -1,40 +1,66 @@
 import {AppHeader} from '@/src/ui/components/AppHeader'
 import {GradientBackground} from '@/src/ui/components/GradientBackground'
 import React, {FC} from 'react'
-import {FlatList, StyleSheet, Text} from 'react-native'
-import {FavoriteCard, FavoriteListHeader} from './components'
+import {Platform, StyleSheet, Text} from 'react-native'
+import {
+  FavoriteCard,
+  FavoriteListEmptyView,
+  FavoriteListHeader,
+} from './components'
 import {MainTabScreenProps} from '@/src/navigation/types'
 import {observer} from 'mobx-react-lite'
 import {pokedexStore} from '@/src/store/pokedex.store'
 import {formatPokemonForUI} from '@/src/utils'
+import Animated, {LinearTransition} from 'react-native-reanimated'
+import * as Haptics from 'expo-haptics'
 
 export const FavoritesScreen: FC<MainTabScreenProps<'Favorites'>> = observer(
   ({navigation}) => {
     const favoriteList = pokedexStore.getFavoriteList()
+
+    const listItemAnimation = LinearTransition.springify().damping(85)
 
     const formattedFavoriteList = favoriteList?.map(item =>
       formatPokemonForUI(item),
     )
 
     const handlePressFavorite = (id: number) => {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
       pokedexStore.removeFromFavorites(id)
     }
 
     const handlePressItem = (id: number) => {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft)
       const item = favoriteList?.find(item => item.id === id)
       navigation.navigate('PokemonDetailScreen', {
         id,
         details: item,
       })
     }
+    const handlePressFindPokemons = () => {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft)
+      navigation.navigate('Explore')
+    }
 
     return (
       <GradientBackground>
         <AppHeader />
-        <FlatList
+        <Animated.FlatList
+          itemLayoutAnimation={listItemAnimation}
           contentContainerStyle={styles.listViewStyles}
           data={formattedFavoriteList}
-          ListHeaderComponent={<FavoriteListHeader headerTitle="Favorites" />}
+          keyExtractor={item => item.id.toString()}
+          ListHeaderComponent={
+            <FavoriteListHeader
+              headerTitle="Favorites"
+              isVisible={Boolean(formattedFavoriteList?.length)}
+            />
+          }
+          ListEmptyComponent={
+            <FavoriteListEmptyView
+              onFindPokemonsPress={handlePressFindPokemons}
+            />
+          }
           renderItem={({item}) => (
             <FavoriteCard
               name={item.name}

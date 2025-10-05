@@ -4,10 +4,11 @@ import {StyleSheet, Text} from 'react-native'
 
 interface Props {
   headerTitle?: string
+  isVisible?: boolean
 }
 
-export const FavoriteListHeader = memo(({headerTitle}: Props) => {
-  return <Text style={styles.headerText}>{headerTitle}</Text>
+export const FavoriteListHeader = memo(({headerTitle, isVisible}: Props) => {
+  return isVisible ? <Text style={styles.headerText}>{headerTitle}</Text> : null
 })
 
 FavoriteListHeader.displayName = 'FavoriteListHeader'

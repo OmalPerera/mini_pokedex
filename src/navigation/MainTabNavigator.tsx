@@ -1,12 +1,12 @@
-import { FavoriteIcon, Pokeball } from '@/assets'
-import { Ionicons } from '@expo/vector-icons'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {FavoriteIcon, Pokeball} from '@/assets'
+import {Ionicons} from '@expo/vector-icons'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import React from 'react'
-import { ExploreScreen, RandomPokemonScreen } from '../modules'
-import { FavoritesScreen } from '../modules/favorites/FavoriteScreen'
-import { colors } from '../ui/theme'
-import { TabBarButton } from './components'
-import type { MainTabParamList } from './types'
+import {ExploreScreen, RandomPokemonScreen} from '../modules'
+import {FavoritesScreen} from '../modules/favorites/FavoriteScreen'
+import {colors} from '../ui/theme'
+import {TabBarButton} from './components'
+import type {MainTabParamList} from './types'
 
 const Tab = createBottomTabNavigator<MainTabParamList>()
 
@@ -26,16 +26,13 @@ export function MainTabNavigator() {
           marginTop: 2,
           fontSize: 12,
         },
-      }}
-    >
+      }}>
       <Tab.Screen
         name="Random"
         component={RandomPokemonScreen}
         options={{
           title: 'Daily',
-          tabBarIcon: ({ focused }) => (
-            <Pokeball size={28} isFocused={focused} />
-          ),
+          tabBarIcon: ({focused}) => <Pokeball size={28} isFocused={focused} />,
         }}
       />
       <Tab.Screen
@@ -43,11 +40,11 @@ export function MainTabNavigator() {
         component={ExploreScreen}
         options={{
           title: 'Explore',
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <Ionicons
               name="search"
               size={28}
-              color={focused ? colors.red_700 : colors.grey_700}
+              color={focused ? colors.red_550 : colors.grey_700}
             />
           ),
         }}
@@ -57,7 +54,7 @@ export function MainTabNavigator() {
         component={FavoritesScreen}
         options={{
           title: 'Favorites',
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <FavoriteIcon size={28} isFocused={focused} />
           ),
         }}

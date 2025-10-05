@@ -1,19 +1,30 @@
 import {colors} from '@/src/ui/theme'
 import React, {FC, memo} from 'react'
-import {Image, StyleSheet, Text, useWindowDimensions, View} from 'react-native'
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from 'react-native'
 import Animated, {ZoomIn} from 'react-native-reanimated'
 
 interface Props {
   pokemonImage?: string
   name?: string
   type?: string
+  onPress?: () => void
 }
 
 export const CreatureBasicInfo: FC<Props> = memo(
-  ({pokemonImage, name, type}) => {
+  ({pokemonImage, name, type, onPress}) => {
     const {height} = useWindowDimensions()
     return (
-      <View style={styles.container}>
+      <TouchableOpacity
+        activeOpacity={1}
+        style={styles.container}
+        onPress={onPress}>
         <Animated.View entering={ZoomIn.duration(500)}>
           <Image
             source={{uri: pokemonImage}}
@@ -22,7 +33,7 @@ export const CreatureBasicInfo: FC<Props> = memo(
         </Animated.View>
         <Text style={styles.pokemonName}>{name}</Text>
         <Text style={styles.pokemonType}>{type}</Text>
-      </View>
+      </TouchableOpacity>
     )
   },
 )
