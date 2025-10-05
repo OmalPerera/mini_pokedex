@@ -1,9 +1,9 @@
-import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
-import React, { FC } from "react";
-import { ColorValue } from "react-native";
-import { colors } from "../theme";
+import { LinearGradient, LinearGradientProps } from 'expo-linear-gradient'
+import React, { FC } from 'react'
+import { ColorValue } from 'react-native'
+import { colors } from '../theme'
 
-interface Props extends Omit<LinearGradientProps, "colors"> {
+interface Props extends Omit<LinearGradientProps, 'colors'> {
   colors?: [ColorValue, ColorValue, ...ColorValue[]];
 }
 
@@ -18,5 +18,5 @@ export const GradientBackground: FC<Props> = ({ children, ...props }) => {
     >
       {children}
     </LinearGradient>
-  );
-};
+  )
+}

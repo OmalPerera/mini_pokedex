@@ -1,1 +1,1 @@
-export * from "./CreatureCard";
+export * from './CreatureCard'

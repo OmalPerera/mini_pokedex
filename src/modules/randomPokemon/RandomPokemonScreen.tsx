@@ -1,28 +1,32 @@
-import { images } from "@/assets/images";
-import { AppHeader, GradientBackground } from "@/src/ui/components";
-import React, { FC } from "react";
-import { ScrollView, StyleSheet } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import type { MainTabScreenProps } from "../../navigation/types";
-import { useGetPokemonSpeciesQuery } from "./api/randomPokemon.operarions.generated";
-import { CreatureCard } from "./components";
+import {images} from '@/assets/images'
+import {AppHeader, GradientBackground} from '@/src/ui/components'
+import React, {FC, useEffect} from 'react'
+import {ScrollView, StyleSheet} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import type {MainTabScreenProps} from '../../navigation/types'
+import {useGetPokedexQuery} from './api/randomPokemon.operarions.generated'
+import {CreatureCard} from './components'
 
-export const RandomPokemonScreen: FC<MainTabScreenProps<"Random">> = ({
-  navigation,
-  route,
-}) => {
-  const { bottom } = useSafeAreaInsets();
+export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = () => {
+  const {bottom} = useSafeAreaInsets()
 
-  const { data, loading, error } = useGetPokemonSpeciesQuery();
+  //const { data, loading, error } = useGetPokemonSpeciesQuery()
 
-  //   useEffect(() => {
-  //     if (data) {
-  //       console.log(data);
-  //     }
-  //   }, [data]);
+  const {data} = useGetPokedexQuery({
+    variables: {
+      limit: 10,
+      offset: 0,
+    },
+  })
+
+  useEffect(() => {
+    if (data) {
+      //console.log(JSON.stringify(data, null, 2))
+    }
+  }, [data])
 
   return (
-    <GradientBackground style={{ paddingBottom: bottom }}>
+    <GradientBackground style={{paddingBottom: bottom}}>
       <AppHeader />
       <ScrollView contentContainerStyle={styles.content}>
         <CreatureCard
@@ -30,20 +34,20 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<"Random">> = ({
           image={images.pikachu}
           isFavorite={false}
           type="Electric"
-          onPressLearnMore={() => console.log("Learn More Pressed")}
-          onPressFavorite={() => console.log("Favorite Pressed")}
-          onPressAnotherOne={() => console.log("Another One Pressed")}
+          onPressLearnMore={() => console.log('Learn More Pressed')}
+          onPressFavorite={() => console.log('Favorite Pressed')}
+          onPressAnotherOne={() => console.log('Another One Pressed')}
         />
       </ScrollView>
     </GradientBackground>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   content: {
     flexGrow: 1,
     padding: 16,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-});
+})

@@ -1,12 +1,12 @@
-import React, { FC, memo } from "react";
+import React, { FC, memo } from 'react'
 import {
   Image,
   ImageSourcePropType,
   StyleSheet,
   Text,
   View,
-} from "react-native";
-import Animated from "react-native-reanimated";
+} from 'react-native'
+import Animated from 'react-native-reanimated'
 
 interface Props {
   pokemonImage?: ImageSourcePropType;
@@ -21,11 +21,11 @@ export const CreatureBasicInfo: FC<Props> = memo(
         <Animated.View
           style={{
             animationName: {
-              "50%": { transform: [{ rotate: "10deg" }] },
+              '50%': { transform: [{ rotate: '10deg' }] },
             },
             animationIterationCount: 2,
-            animationDuration: "300ms",
-            animationDelay: "1000ms",
+            animationDuration: '300ms',
+            animationDelay: '1000ms',
           }}
         >
           <Image source={pokemonImage} style={styles.imagePlaceholder} />
@@ -33,31 +33,31 @@ export const CreatureBasicInfo: FC<Props> = memo(
         <Text style={styles.pokemonName}>{name}</Text>
         <Text style={styles.pokemonType}>{type}</Text>
       </View>
-    );
+    )
   }
-);
+)
 
-CreatureBasicInfo.displayName = "CreatureBasicInfo";
+CreatureBasicInfo.displayName = 'CreatureBasicInfo'
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   imagePlaceholder: {
     height: 220,
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
   pokemonName: {
     fontSize: 30,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginTop: 20,
     marginBottom: 8,
   },
   pokemonType: {
     fontSize: 16,
-    color: "#666",
+    color: '#666',
     marginBottom: 30,
   },
-});
+})
 
-export default CreatureBasicInfo;
+export default CreatureBasicInfo

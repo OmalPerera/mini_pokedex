@@ -1,10 +1,10 @@
-import { colors } from "@/src/ui/theme";
-import { setOpacity } from "@/src/utils";
-import { FC } from "react";
-import { ImageSourcePropType, StyleSheet, View } from "react-native";
-import { CardActionButton } from "./CardActionButtons";
-import { CardHeaderSection } from "./CardHeaderSection";
-import { CreatureBasicInfo } from "./CreatureBasicInfo";
+import { colors } from '@/src/ui/theme'
+import { setOpacity } from '@/src/utils'
+import { FC } from 'react'
+import { ImageSourcePropType, StyleSheet, View } from 'react-native'
+import { CardActionButton } from './CardActionButtons'
+import { CardHeaderSection } from './CardHeaderSection'
+import { CreatureBasicInfo } from './CreatureBasicInfo'
 
 interface Props {
   name?: string;
@@ -16,7 +16,7 @@ interface Props {
   onPressAnotherOne?: () => void;
 }
 export const CreatureCard: FC<Props> = ({
-  name = "",
+  name = '',
   image,
   isFavorite,
   type,
@@ -48,19 +48,19 @@ export const CreatureCard: FC<Props> = ({
         backgroundColor={colors.green_200}
       />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   card: {
     borderRadius: 16,
     padding: 20,
-    width: "90%",
-    alignItems: "center",
-    shadowColor: "#000",
+    width: '90%',
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 5,
   },
-});
+})

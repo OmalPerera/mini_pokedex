@@ -1,12 +1,12 @@
-import { colors } from "@/src/ui/theme";
-import React, { FC, memo } from "react";
+import { colors } from '@/src/ui/theme'
+import React, { FC, memo } from 'react'
 import {
   ColorValue,
   StyleSheet,
   Text,
   TouchableOpacity,
   ViewStyle,
-} from "react-native";
+} from 'react-native'
 
 interface CardActionButtonProps {
   title?: string;
@@ -24,30 +24,30 @@ export const CardActionButton: FC<CardActionButtonProps> = memo(
       >
         <Text style={styles.buttonText}>{title}</Text>
       </TouchableOpacity>
-    );
+    )
   }
-);
+)
 
-CardActionButton.displayName = "CardActionButton";
+CardActionButton.displayName = 'CardActionButton'
 
 const styles = StyleSheet.create({
   buttonShadow: {
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 3,
   },
   button: {
-    width: "80%",
+    width: '80%',
     paddingVertical: 15,
     borderRadius: 72,
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 15,
   },
   buttonText: {
-    color: "white",
+    color: 'white',
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
-});
+})

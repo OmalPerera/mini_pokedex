@@ -1,2 +1,2 @@
-export { AppHeader } from "./AppHeader";
-export { GradientBackground } from "./GradientBackground";
+export { AppHeader } from './AppHeader'
+export { GradientBackground } from './GradientBackground'

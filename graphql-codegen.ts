@@ -32,6 +32,7 @@ const config: CodegenConfig = {
         strictScalars: true,
         arrayInputType: "array",
         documentMode: "graphQLTag",
+        useResultType: "ApolloReactHooks.QueryResult",
         importBaseTypesFrom: "@apollo/client/react",
         apolloReactHooksImportFrom: "@apollo/client/react",
         scalars: {
@@ -42,7 +43,7 @@ const config: CodegenConfig = {
       },
     },
   },
-  hooks: { afterAllFileWrite: ["prettier --write"] },
+  hooks: { afterAllFileWrite: ["npx prettier --write", "npx eslint --fix"] },
 };
 
 export default config;

@@ -1,16 +1,13 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text } from "react-native";
-import type { MainTabScreenProps } from "../../navigation/types";
+import React from 'react'
+import { ScrollView, StyleSheet, Text } from 'react-native'
 
-type Props = MainTabScreenProps<"Favorites">;
-
-export function FavoritesScreen({ navigation, route }: Props) {
+export function FavoritesScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={styles.title}>Favorites</Text>
       <Text style={styles.subtitle}>Your favorite Pokémon here!</Text>
     </ScrollView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -22,11 +19,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
-    color: "#666",
+    color: '#666',
   },
-});
+})

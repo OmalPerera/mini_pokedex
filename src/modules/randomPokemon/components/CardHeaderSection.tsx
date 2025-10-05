@@ -1,7 +1,7 @@
-import { colors } from "@/src/ui/theme";
-import { Ionicons } from "@expo/vector-icons";
-import React, { FC, memo } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { colors } from '@/src/ui/theme'
+import { Ionicons } from '@expo/vector-icons'
+import React, { FC, memo } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 interface Props {
   headerTitle?: string;
@@ -22,23 +22,23 @@ export const CardHeaderSection: FC<Props> = memo(
           )}
         </TouchableOpacity>
       </View>
-    );
+    )
   }
-);
+)
 
-CardHeaderSection.displayName = "CardHeaderSection";
+CardHeaderSection.displayName = 'CardHeaderSection'
 
 const styles = StyleSheet.create({
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    alignItems: 'center',
     marginBottom: 24,
   },
   title: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: colors.grey_950,
   },
-});
+})

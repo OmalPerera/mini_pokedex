@@ -1,14 +1,14 @@
-import { FavoriteIcon, Pokeball } from "@/assets";
-import { Ionicons } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React from "react";
-import { ExploreScreen, RandomPokemonScreen } from "../modules";
-import { FavoritesScreen } from "../modules/favorites/FavoriteScreen";
-import { colors } from "../ui/theme";
-import { TabBarButton } from "./components";
-import type { MainTabParamList } from "./types";
+import { FavoriteIcon, Pokeball } from '@/assets'
+import { Ionicons } from '@expo/vector-icons'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import React from 'react'
+import { ExploreScreen, RandomPokemonScreen } from '../modules'
+import { FavoritesScreen } from '../modules/favorites/FavoriteScreen'
+import { colors } from '../ui/theme'
+import { TabBarButton } from './components'
+import type { MainTabParamList } from './types'
 
-const Tab = createBottomTabNavigator<MainTabParamList>();
+const Tab = createBottomTabNavigator<MainTabParamList>()
 
 export function MainTabNavigator() {
   return (
@@ -32,7 +32,7 @@ export function MainTabNavigator() {
         name="Random"
         component={RandomPokemonScreen}
         options={{
-          title: "Daily",
+          title: 'Daily',
           tabBarIcon: ({ focused }) => (
             <Pokeball size={28} isFocused={focused} />
           ),
@@ -42,7 +42,7 @@ export function MainTabNavigator() {
         name="Explore"
         component={ExploreScreen}
         options={{
-          title: "Explore",
+          title: 'Explore',
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name="search"
@@ -56,12 +56,12 @@ export function MainTabNavigator() {
         name="Favorites"
         component={FavoritesScreen}
         options={{
-          title: "Favorites",
+          title: 'Favorites',
           tabBarIcon: ({ focused }) => (
             <FavoriteIcon size={28} isFocused={focused} />
           ),
         }}
       />
     </Tab.Navigator>
-  );
+  )
 }

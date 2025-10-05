@@ -1,1 +1,1 @@
-export { TabBarButton } from "./TabBarButton";
+export { TabBarButton } from './TabBarButton'
