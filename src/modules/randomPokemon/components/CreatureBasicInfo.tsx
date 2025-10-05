@@ -1,3 +1,4 @@
+import {colors} from '@/src/ui/theme'
 import React, {FC, memo} from 'react'
 import {Image, StyleSheet, Text, useWindowDimensions, View} from 'react-native'
 import Animated, {ZoomIn} from 'react-native-reanimated'
@@ -41,10 +42,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 12,
     marginBottom: 8,
+    color: colors.blue_900,
   },
   pokemonType: {
     fontSize: 16,
-    color: '#666',
+    color: colors.grey_800,
     marginBottom: 20,
   },
 })

@@ -1,4 +1,5 @@
 import {AppHeader, GradientBackground} from '@/src/ui/components'
+import * as Haptics from 'expo-haptics'
 import React, {FC, useEffect, useMemo} from 'react'
 import {ScrollView, StyleSheet} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
@@ -17,6 +18,7 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = ({
 
   const doFetchRandomPokemon = () => {
     const randomId = getRandomInt()
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     fetchPokemonById({
       variables: {
         where: {id: {_eq: randomId}},
@@ -42,6 +44,11 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = ({
     }
   }, [data])
 
+  const handlePressLearnMore = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    navigation.navigate('PokemonDetailScreen')
+  }
+
   return (
     <GradientBackground style={{paddingBottom: bottom}}>
       <AppHeader />
@@ -52,7 +59,7 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = ({
           isFavorite={false}
           type={pokemonInfo?.type}
           onPressFavorite={() => console.log('Favorite Pressed')}
-          onPressLearnMore={() => navigation.navigate('PokemonDetailScreen')}
+          onPressLearnMore={handlePressLearnMore}
           onPressAnotherOne={doFetchRandomPokemon}
         />
       </ScrollView>
