@@ -12,6 +12,8 @@ export const formatPokemonForUI = (pokemon?: PokemonDetailsFragment) => {
     about: sanitizeEscapeChars(
       pokemon?.pokemonspecy?.pokemonspeciesflavortexts[0].flavor_text || '',
     ),
+    height: pokemon?.height || 0,
+    weight: pokemon?.weight || 0,
     evolutionChain: pokemon?.pokemonspecy?.evolutionchain?.pokemonspecies.map(
       species => ({
         name: species.name,
@@ -19,5 +21,6 @@ export const formatPokemonForUI = (pokemon?: PokemonDetailsFragment) => {
         condition: species.pokemonspeciesnames[0].name,
       }),
     ),
+    stats: pokemon?.pokemonstats || [],
   }
 }

@@ -27,7 +27,10 @@ export type StatsFragment = {
   __typename?: 'pokemonstat'
   base_stat: number
   effort: number
-  stat?: {__typename?: 'stat'; name: string}
+  stat?: {
+    __typename?: 'stat'
+    statnames: Array<{__typename?: 'statname'; name: string}>
+  }
 }
 
 export type MoveFragment = {
@@ -100,7 +103,10 @@ export type PokemonDetailsFragment = {
     __typename?: 'pokemonstat'
     base_stat: number
     effort: number
-    stat?: {__typename?: 'stat'; name: string}
+    stat?: {
+      __typename?: 'stat'
+      statnames: Array<{__typename?: 'statname'; name: string}>
+    }
   }>
   pokemonmoves: Array<{
     __typename?: 'pokemonmove'
@@ -178,7 +184,9 @@ export const StatsFragmentDoc = gql`
     base_stat
     effort
     stat {
-      name
+      statnames(where: {language_id: {_eq: 9}}) {
+        name
+      }
     }
   }
 `

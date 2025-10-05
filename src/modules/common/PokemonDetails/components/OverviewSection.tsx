@@ -18,14 +18,6 @@ export const OverviewSection: FC<Props> = memo(
         <Image source={{uri: image}} style={styles.pokemonImage} />
         <Text style={styles.pokemonName}>{name}</Text>
         <Text style={styles.pokemonType}>{type}</Text>
-        <View style={styles.badgeContainer}>
-          <View style={[styles.badge, styles.electricBadge]}>
-            {isFavorite && <FavoriteIcon size={20} />}
-          </View>
-          <View style={[styles.badge, styles.starBadge]}>
-            <Pokeball size={20} />
-          </View>
-        </View>
         {about && (
           <View style={styles.aboutSection}>
             <Text style={styles.sectionTitle}>About</Text>
@@ -79,7 +71,7 @@ const styles = StyleSheet.create({
   aboutSection: {
     alignSelf: 'stretch',
     backgroundColor: setOpacity(colors.primary_white)(0.35),
-    borderRadius: 15,
+    borderRadius: 16,
     padding: 16,
     marginTop: 20,
   },

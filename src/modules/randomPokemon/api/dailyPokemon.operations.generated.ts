@@ -33,7 +33,10 @@ export type GetPokemonByIdQuery = {
       __typename?: 'pokemonstat'
       base_stat: number
       effort: number
-      stat?: {__typename?: 'stat'; name: string}
+      stat?: {
+        __typename?: 'stat'
+        statnames: Array<{__typename?: 'statname'; name: string}>
+      }
     }>
     pokemonmoves: Array<{
       __typename?: 'pokemonmove'

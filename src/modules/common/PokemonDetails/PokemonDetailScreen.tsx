@@ -5,14 +5,17 @@ import {Ionicons} from '@expo/vector-icons'
 import * as Haptics from 'expo-haptics'
 import React, {FC, useMemo} from 'react'
 import {ScrollView, StyleSheet, TouchableOpacity} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
-import {EvolutionSection, OverviewSection} from './components'
+import {
+  CharacteristicsSection,
+  EvolutionSection,
+  OverviewSection,
+  StatsSection,
+} from './components'
 import {formatPokemonForUI} from './helper'
 
 export const PokemonDetailScreen: FC<
   RootStackScreenProps<'PokemonDetailScreen'>
 > = ({navigation, route}) => {
-  const {bottom} = useSafeAreaInsets()
   const {id, details} = route.params
 
   const handleClose = () => {
@@ -24,7 +27,7 @@ export const PokemonDetailScreen: FC<
   const _details = useMemo(() => formatPokemonForUI(details), [id])
 
   return (
-    <GradientBackground style={{paddingBottom: bottom}}>
+    <GradientBackground>
       <TouchableOpacity
         style={styles.closeButton}
         hitSlop={24}
@@ -39,10 +42,15 @@ export const PokemonDetailScreen: FC<
           isFavorite={true}
           about={_details.about}
         />
+        <CharacteristicsSection
+          height={_details.height}
+          weight={_details.weight}
+        />
         <EvolutionSection
           title="Evolution Chain"
           evolutionChain={_details.evolutionChain}
         />
+        <StatsSection title="Stats" stats={_details.stats} />
       </ScrollView>
     </GradientBackground>
   )
@@ -51,10 +59,10 @@ export const PokemonDetailScreen: FC<
 const styles = StyleSheet.create({
   content: {
     flexGrow: 1,
-    flex: 1,
     padding: 16,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingBottom: 64,
   },
   closeButton: {
     position: 'absolute',

@@ -22,7 +22,9 @@ fragment StatsFragment on pokemonstat {
   base_stat
   effort
   stat {
-    name
+    statnames(where: {language_id: {_eq: 9}}) {
+      name
+    }
   }
 }
 
