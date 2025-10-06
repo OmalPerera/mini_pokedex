@@ -25,7 +25,7 @@ export const DailyPokemonScreen: FC<MainTabScreenProps<'DailyPokemon'>> =
 
     const {toggleFavorite} = useTogglePokemonFavorite()
 
-    const [fetchPokemonById, {data}] = useGetPokemonsByIdsLazyQuery()
+    const [fetchPokemonById, {data, loading}] = useGetPokemonsByIdsLazyQuery()
 
     const doFetchPokemon = () => {
       const randomId = getRandomInt()
@@ -78,6 +78,7 @@ export const DailyPokemonScreen: FC<MainTabScreenProps<'DailyPokemon'>> =
             onPressFavorite={handlePressFavorite}
             onPressLearnMore={handlePressLearnMore}
             onPressAnotherOne={doFetchPokemon}
+            isLoading={loading}
           />
         </ScrollView>
       </GradientBackground>

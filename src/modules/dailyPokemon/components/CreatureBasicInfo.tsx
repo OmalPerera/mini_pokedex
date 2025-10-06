@@ -6,7 +6,6 @@ import {
   Text,
   TouchableOpacity,
   useWindowDimensions,
-  View,
 } from 'react-native'
 import Animated, {ZoomIn} from 'react-native-reanimated'
 
@@ -61,5 +60,3 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 })
-
-export default CreatureBasicInfo
