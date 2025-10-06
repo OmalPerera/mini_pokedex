@@ -18,7 +18,8 @@ export const DailyPokemonScreen: FC<MainTabScreenProps<'DailyPokemon'>> =
   observer(({navigation}) => {
     const favoriteItemsIds = getPokedexStore().getFavoriteItemsIds()
 
-    const hasPopularPokemons = getPokedexStore().getPopularPokemons?.length > 0
+    const hasPopularPokemons =
+      (getPokedexStore().getFavoriteList() ?? []).length > 0
 
     const {fetchPopularPokemons} = useFetchPopularPokemons()
 

@@ -22,7 +22,10 @@ export const ListItemCard: FC<Props> = ({
   onPressItem,
 }) => {
   return (
-    <TouchableOpacity style={[styles.card]} onPress={onPressItem}>
+    <TouchableOpacity
+      style={[styles.card]}
+      onPress={onPressItem}
+      activeOpacity={0.8}>
       <Image source={{uri: image}} style={styles.pokemonImage} />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{name}</Text>
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: colors.primary_black,
+    color: colors.blue_900,
     marginBottom: 2,
   },
   type: {
