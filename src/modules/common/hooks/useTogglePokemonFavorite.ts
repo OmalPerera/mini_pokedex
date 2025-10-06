@@ -1,6 +1,6 @@
+import {PokemonDetailsFragment} from '@/src/api/queries/pokemon.generated'
 import {pokedexStore} from '@/src/store/pokedex.store'
 import * as Haptics from 'expo-haptics'
-import {PokemonDetailsFragment} from '../../randomPokemon/api/dailyPokemon.generated'
 
 type Props = {
   isFavorite: boolean

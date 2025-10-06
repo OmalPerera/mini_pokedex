@@ -1,4 +1,4 @@
-import {StatsFragment} from '@/src/modules/randomPokemon/api/dailyPokemon.generated'
+import {StatsFragment} from '@/src/api/queries/pokemon.generated'
 import {ProgressBar} from '@/src/ui/components'
 import {colors} from '@/src/ui/theme'
 import {setOpacity} from '@/src/utils'

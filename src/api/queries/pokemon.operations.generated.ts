@@ -1,7 +1,7 @@
-import * as Types from '../../../api/types'
+import * as Types from '../types'
 
 import {gql} from '@apollo/client'
-import {PokemonDetailsFragmentDoc} from './dailyPokemon.generated'
+import {PokemonDetailsFragmentDoc} from './pokemon.generated'
 import * as Apollo from '@apollo/client'
 import * as ApolloReactHooks from '@apollo/client/react'
 const defaultOptions = {} as const

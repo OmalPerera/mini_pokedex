@@ -14,7 +14,7 @@ module.exports = defineConfig([
   },
   {
     rules: {
-      'unused-imports/no-unused-imports-ts': ['error'],
+      'unused-imports/no-unused-imports': ['error'],
       'unused-imports/no-unused-vars': ['error'],
       'react/no-direct-mutation-state': ['error'],
       'prefer-const': ['error'],

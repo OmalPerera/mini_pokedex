@@ -1,49 +1,49 @@
-import type { CodegenConfig } from "@graphql-codegen/cli";
+import type {CodegenConfig} from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: "./graphql/schema.graphql",
-  documents: ["src/**/*.gql"],
+  schema: './graphql/schema.graphql',
+  documents: ['src/**/*.gql'],
   generates: {
-    "src/api/types.ts": {
-      plugins: ["typescript"],
+    'src/api/types.ts': {
+      plugins: ['typescript'],
       config: {
-        maybeValue: "T",
+        maybeValue: 'T',
         strictScalars: true,
-        arrayInputType: "array",
+        arrayInputType: 'array',
         scalars: {
-          Time: "string",
-          JSON: "Record<string, unknown>",
-          jsonb: "Record<string, unknown>",
+          Time: 'string',
+          JSON: 'Record<string, unknown>',
+          jsonb: 'Record<string, unknown>',
         },
       },
     },
-    "src/": {
-      preset: "near-operation-file",
+    'src/': {
+      preset: 'near-operation-file',
       presetConfig: {
-        extension: ".generated.ts",
-        baseTypesPath: "api/types",
+        extension: '.generated.ts',
+        baseTypesPath: 'api/types',
       },
-      plugins: ["typescript-operations", "typescript-react-apollo"],
+      plugins: ['typescript-operations', 'typescript-react-apollo'],
       config: {
-        maybeValue: "T",
+        maybeValue: 'T',
         withHooks: true,
         dedupeOperationSuffix: true,
         strictScalars: true,
-        arrayInputType: "array",
-        documentMode: "graphQLTag",
-        useResultType: "ApolloReactHooks.QueryResult",
-        importBaseTypesFrom: "@apollo/client/react",
-        apolloReactHooksImportFrom: "@apollo/client/react",
+        arrayInputType: 'array',
+        documentMode: 'graphQLTag',
+        useResultType: 'ApolloReactHooks.QueryResult',
+        importBaseTypesFrom: '@apollo/client/react',
+        apolloReactHooksImportFrom: '@apollo/client/react',
         scalars: {
-          Time: "string",
-          JSON: "Record<string, unknown>",
-          jsonb: "Record<string, unknown>",
+          Time: 'string',
+          JSON: 'Record<string, unknown>',
+          jsonb: 'Record<string, unknown>',
         },
       },
     },
   },
-  hooks: { afterAllFileWrite: ["npx prettier --write", "npx eslint --fix"] },
-};
+  hooks: {afterAllFileWrite: ['npx prettier --write', 'npx eslint --fix']},
+}
 
-export default config;
+export default config

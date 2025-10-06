@@ -3,13 +3,13 @@ import * as Haptics from 'expo-haptics'
 import React, {FC, useEffect, useMemo} from 'react'
 import {ScrollView, StyleSheet} from 'react-native'
 import type {MainTabScreenProps} from '../../navigation/types'
-import {useGetPokemonByIdLazyQuery} from './api/dailyPokemon.operations.generated'
 import {CreatureCard} from './components'
 import {getRandomInt} from './utils/getRandomId'
 import {pokedexStore} from '@/src/store/pokedex.store'
 import {observer} from 'mobx-react-lite'
 import {formatPokemonForUI} from '@/src/utils'
 import {useTogglePokemonFavorite} from '../common/hooks'
+import {useGetPokemonByIdLazyQuery} from '@/src/api/queries/pokemon.operations.generated'
 
 export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = observer(
   ({navigation}) => {

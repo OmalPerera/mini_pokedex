@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
+    "type-check": "tsc --noEmit",
     "pokeapi-schema": "npx -p @apollo/rover rover graph introspect https://graphql.pokeapi.co/v1beta2 > graphql/schema.graphql",
     "codegen": "graphql-codegen --config graphql-codegen.ts"
   },

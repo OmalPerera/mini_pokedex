@@ -1,7 +1,7 @@
 import {makeAutoObservable} from 'mobx'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {makePersistable} from 'mobx-persist-store'
-import {PokemonDetailsFragment} from '../modules/randomPokemon/api/dailyPokemon.generated'
+import {PokemonDetailsFragment} from '../api/queries/pokemon.generated'
 
 class PokedexStore {
   _favoriteList?: PokemonDetailsFragment[] = []

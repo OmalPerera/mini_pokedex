@@ -1,4 +1,3 @@
-import * as Types from '../../../api/types'
 
 import {gql} from '@apollo/client'
 export type BasicInfoFragment = {
