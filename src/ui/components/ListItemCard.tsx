@@ -2,7 +2,6 @@ import React, {FC} from 'react'
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {colors} from '@/src/ui/theme'
 import {setOpacity} from '@/src/utils'
-import {FavoriteIcon} from '@/assets/svg/FavoriteIcon'
 import {AnimatedFavoriteIcon} from './AnimatedFavoriteIcon'
 
 interface Props {
@@ -71,8 +70,5 @@ const styles = StyleSheet.create({
   type: {
     fontSize: 16,
     color: colors.grey_700,
-  },
-  favoriteButton: {
-    padding: 8,
   },
 })

@@ -56,6 +56,7 @@ export type GetPokemonByIdQuery = {
       name: string
       evolution_chain_id?: number
       evolves_from_species_id?: number
+      pokemoncolor?: {__typename?: 'pokemoncolor'; name: string}
       pokemonspeciesflavortexts: Array<{
         __typename?: 'pokemonspeciesflavortext'
         flavor_text: string
@@ -140,6 +141,7 @@ export type SearchPokemonsQuery = {
       name: string
       evolution_chain_id?: number
       evolves_from_species_id?: number
+      pokemoncolor?: {__typename?: 'pokemoncolor'; name: string}
       pokemonspeciesflavortexts: Array<{
         __typename?: 'pokemonspeciesflavortext'
         flavor_text: string
