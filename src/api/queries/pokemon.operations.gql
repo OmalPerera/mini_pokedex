@@ -3,3 +3,14 @@ query GetPokemonById($where: pokemon_bool_exp) {
     ...PokemonDetailsFragment
   }
 }
+
+query SearchPokemons($q: String!, $limit: Int!, $offset: Int!) {
+  pokemon(
+    where: {name: {_ilike: $q}}
+    limit: $limit
+    offset: $offset
+    order_by: {id: asc}
+  ) {
+    ...PokemonDetailsFragment
+  }
+}

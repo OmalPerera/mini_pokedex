@@ -11,8 +11,8 @@ import {formatPokemonForUI} from '@/src/utils'
 import {useTogglePokemonFavorite} from '../common/hooks'
 import {useGetPokemonByIdLazyQuery} from '@/src/api/queries/pokemon.operations.generated'
 
-export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = observer(
-  ({navigation}) => {
+export const DailyPokemonScreen: FC<MainTabScreenProps<'DailyPokemon'>> =
+  observer(({navigation}) => {
     const favoriteItemsIds = pokedexStore.getFavoriteItemsIds()
 
     const {toggleFavorite} = useTogglePokemonFavorite()
@@ -20,7 +20,7 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = observer(
     const [fetchPokemonById, {data, loading, error}] =
       useGetPokemonByIdLazyQuery()
 
-    const doFetchRandomPokemon = () => {
+    const doFetchPokemon = () => {
       const randomId = getRandomInt()
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
       fetchPokemonById({
@@ -31,7 +31,7 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = observer(
     }
 
     useEffect(() => {
-      doFetchRandomPokemon()
+      doFetchPokemon()
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -67,13 +67,12 @@ export const RandomPokemonScreen: FC<MainTabScreenProps<'Random'>> = observer(
             type={pokemonInfo?.type}
             onPressFavorite={handlePressFavorite}
             onPressLearnMore={handlePressLearnMore}
-            onPressAnotherOne={doFetchRandomPokemon}
+            onPressAnotherOne={doFetchPokemon}
           />
         </ScrollView>
       </GradientBackground>
     )
-  },
-)
+  })
 
 const styles = StyleSheet.create({
   content: {

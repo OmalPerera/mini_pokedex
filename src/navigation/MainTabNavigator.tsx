@@ -2,7 +2,7 @@ import {FavoriteIcon, Pokeball} from '@/assets'
 import {Ionicons} from '@expo/vector-icons'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import React from 'react'
-import {ExploreScreen, RandomPokemonScreen} from '../modules'
+import {ExploreScreen, DailyPokemonScreen} from '../modules'
 import {FavoritesScreen} from '../modules/favorites/FavoriteScreen'
 import {colors} from '../ui/theme'
 import {TabBarButton} from './components'
@@ -28,8 +28,8 @@ export function MainTabNavigator() {
         },
       }}>
       <Tab.Screen
-        name="Random"
-        component={RandomPokemonScreen}
+        name="DailyPokemon"
+        component={DailyPokemonScreen}
         options={{
           title: 'Daily',
           tabBarIcon: ({focused}) => <Pokeball size={28} isFocused={focused} />,

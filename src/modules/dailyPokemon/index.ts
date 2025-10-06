@@ -1,0 +1,1 @@
+export {DailyPokemonScreen} from './DailyPokemonScreen'

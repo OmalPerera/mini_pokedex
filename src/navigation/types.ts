@@ -12,7 +12,7 @@ export type RootStackParamList = {
 }
 
 export type MainTabParamList = {
-  Random: undefined
+  DailyPokemon: undefined
   Explore: undefined
   Favorites: undefined
 }
