@@ -11,6 +11,9 @@ export const usePokemonSearch = () => {
     useSearchPokemonsLazyQuery({fetchPolicy: 'cache-and-network'})
 
   useEffect(() => {
+    if (!searchString) {
+      return
+    }
     searchPokemon({
       variables: {
         q: `%${searchString}%`,
@@ -22,7 +25,7 @@ export const usePokemonSearch = () => {
   }, [searchString, searchPokemon])
 
   const handleLoadMore = () => {
-    if (loading) {
+    if (loading || !searchString) {
       return
     }
 

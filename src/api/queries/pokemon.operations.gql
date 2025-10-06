@@ -1,5 +1,5 @@
-query GetPokemonById($where: pokemon_bool_exp) {
-  pokemon(where: $where) {
+query GetPokemonsByIds($ids: [Int!]!) {
+  pokemon(where: {id: {_in: $ids}}) {
     ...PokemonDetailsFragment
   }
 }

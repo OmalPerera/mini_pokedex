@@ -23,6 +23,8 @@ export const ExploreScreen = observer(
 
     const favoriteItemsIds = getPokedexStore().getFavoriteItemsIds()
 
+    const popularPokemons = getPokedexStore().getPopularPokemons()
+
     const {toggleFavorite} = useTogglePokemonFavorite()
 
     const handlePressItem = (id: number) => {
@@ -48,7 +50,7 @@ export const ExploreScreen = observer(
             styles.listViewStyles,
             {paddingBottom: bottom},
           ]}
-          data={data?.pokemon}
+          data={searchString ? data?.pokemon : popularPokemons}
           ListHeaderComponent={
             <PopularPokemonSection isVisible={!Boolean(searchString)} />
           }

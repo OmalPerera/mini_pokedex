@@ -8,30 +8,39 @@ import {getRandomInt} from './utils/getRandomId'
 import {getPokedexStore} from '@/src/store/pokedex.store'
 import {observer} from 'mobx-react-lite'
 import {formatPokemonForUI} from '@/src/utils'
-import {useTogglePokemonFavorite} from '../common/hooks'
-import {useGetPokemonByIdLazyQuery} from '@/src/api/queries/pokemon.operations.generated'
+import {
+  useTogglePokemonFavorite,
+  useFetchPopularPokemons,
+} from '../common/hooks'
+import {useGetPokemonsByIdsLazyQuery} from '@/src/api/queries/pokemon.operations.generated'
 
 export const DailyPokemonScreen: FC<MainTabScreenProps<'DailyPokemon'>> =
   observer(({navigation}) => {
     const favoriteItemsIds = getPokedexStore().getFavoriteItemsIds()
 
+    const hasPopularPokemons = getPokedexStore().getPopularPokemons?.length > 0
+
+    const {fetchPopularPokemons} = useFetchPopularPokemons()
+
     const {toggleFavorite} = useTogglePokemonFavorite()
 
-    const [fetchPokemonById, {data, loading, error}] =
-      useGetPokemonByIdLazyQuery()
+    const [fetchPokemonById, {data}] = useGetPokemonsByIdsLazyQuery()
 
     const doFetchPokemon = () => {
       const randomId = getRandomInt()
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
       fetchPokemonById({
-        variables: {
-          where: {id: {_eq: randomId}},
-        },
+        variables: {ids: [randomId]},
       })
     }
 
     useEffect(() => {
       doFetchPokemon()
+
+      if (!hasPopularPokemons) {
+        fetchPopularPokemons({shouldWriteToStore: true})
+      }
+
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

@@ -5,11 +5,11 @@ import {PokemonDetailsFragmentDoc} from './pokemon.generated'
 import * as Apollo from '@apollo/client'
 import * as ApolloReactHooks from '@apollo/client/react'
 const defaultOptions = {} as const
-export type GetPokemonByIdQueryVariables = Types.Exact<{
-  where?: Types.InputMaybe<Types.Pokemon_Bool_Exp>
+export type GetPokemonsByIdsQueryVariables = Types.Exact<{
+  ids: Array<Types.Scalars['Int']['input']> | Types.Scalars['Int']['input']
 }>
 
-export type GetPokemonByIdQuery = {
+export type GetPokemonsByIdsQuery = {
   __typename?: 'query_root'
   pokemon: Array<{
     __typename?: 'pokemon'
@@ -173,9 +173,9 @@ export type SearchPokemonsQuery = {
   }>
 }
 
-export const GetPokemonByIdDocument = gql`
-  query GetPokemonById($where: pokemon_bool_exp) {
-    pokemon(where: $where) {
+export const GetPokemonsByIdsDocument = gql`
+  query GetPokemonsByIds($ids: [Int!]!) {
+    pokemon(where: {id: {_in: $ids}}) {
       ...PokemonDetailsFragment
     }
   }
@@ -183,51 +183,55 @@ export const GetPokemonByIdDocument = gql`
 `
 
 /**
- * __useGetPokemonByIdQuery__
+ * __useGetPokemonsByIdsQuery__
  *
- * To run a query within a React component, call `useGetPokemonByIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetPokemonByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetPokemonsByIdsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPokemonsByIdsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetPokemonByIdQuery({
+ * const { data, loading, error } = useGetPokemonsByIdsQuery({
  *   variables: {
- *      where: // value for 'where'
+ *      ids: // value for 'ids'
  *   },
  * });
  */
-export function useGetPokemonByIdQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    GetPokemonByIdQuery,
-    GetPokemonByIdQueryVariables
-  >,
+export function useGetPokemonsByIdsQuery(
+  baseOptions: ApolloReactHooks.QueryHookOptions<
+    GetPokemonsByIdsQuery,
+    GetPokemonsByIdsQueryVariables
+  > &
+    (
+      | {variables: GetPokemonsByIdsQueryVariables; skip?: boolean}
+      | {skip: boolean}
+    ),
 ) {
   const options = {...defaultOptions, ...baseOptions}
   return ApolloReactHooks.useQuery<
-    GetPokemonByIdQuery,
-    GetPokemonByIdQueryVariables
-  >(GetPokemonByIdDocument, options)
+    GetPokemonsByIdsQuery,
+    GetPokemonsByIdsQueryVariables
+  >(GetPokemonsByIdsDocument, options)
 }
-export function useGetPokemonByIdLazyQuery(
+export function useGetPokemonsByIdsLazyQuery(
   baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    GetPokemonByIdQuery,
-    GetPokemonByIdQueryVariables
+    GetPokemonsByIdsQuery,
+    GetPokemonsByIdsQueryVariables
   >,
 ) {
   const options = {...defaultOptions, ...baseOptions}
   return ApolloReactHooks.useLazyQuery<
-    GetPokemonByIdQuery,
-    GetPokemonByIdQueryVariables
-  >(GetPokemonByIdDocument, options)
+    GetPokemonsByIdsQuery,
+    GetPokemonsByIdsQueryVariables
+  >(GetPokemonsByIdsDocument, options)
 }
-export function useGetPokemonByIdSuspenseQuery(
+export function useGetPokemonsByIdsSuspenseQuery(
   baseOptions?:
     | ApolloReactHooks.SkipToken
     | ApolloReactHooks.SuspenseQueryHookOptions<
-        GetPokemonByIdQuery,
-        GetPokemonByIdQueryVariables
+        GetPokemonsByIdsQuery,
+        GetPokemonsByIdsQueryVariables
       >,
 ) {
   const options =
@@ -235,22 +239,22 @@ export function useGetPokemonByIdSuspenseQuery(
       ? baseOptions
       : {...defaultOptions, ...baseOptions}
   return ApolloReactHooks.useSuspenseQuery<
-    GetPokemonByIdQuery,
-    GetPokemonByIdQueryVariables
-  >(GetPokemonByIdDocument, options)
+    GetPokemonsByIdsQuery,
+    GetPokemonsByIdsQueryVariables
+  >(GetPokemonsByIdsDocument, options)
 }
-export type GetPokemonByIdQueryHookResult = ReturnType<
-  typeof useGetPokemonByIdQuery
+export type GetPokemonsByIdsQueryHookResult = ReturnType<
+  typeof useGetPokemonsByIdsQuery
 >
-export type GetPokemonByIdLazyQueryHookResult = ReturnType<
-  typeof useGetPokemonByIdLazyQuery
+export type GetPokemonsByIdsLazyQueryHookResult = ReturnType<
+  typeof useGetPokemonsByIdsLazyQuery
 >
-export type GetPokemonByIdSuspenseQueryHookResult = ReturnType<
-  typeof useGetPokemonByIdSuspenseQuery
+export type GetPokemonsByIdsSuspenseQueryHookResult = ReturnType<
+  typeof useGetPokemonsByIdsSuspenseQuery
 >
-export type GetPokemonByIdQueryResult = Apollo.QueryResult<
-  GetPokemonByIdQuery,
-  GetPokemonByIdQueryVariables
+export type GetPokemonsByIdsQueryResult = Apollo.QueryResult<
+  GetPokemonsByIdsQuery,
+  GetPokemonsByIdsQueryVariables
 >
 export const SearchPokemonsDocument = gql`
   query SearchPokemons($q: String!, $limit: Int!, $offset: Int!) {

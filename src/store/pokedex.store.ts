@@ -8,17 +8,11 @@ class PokedexStore {
 
   _popularPokemons?: PokemonDetailsFragment[] = []
 
-  _poplarPokemonsLastFetchUnixTime: number = 0
-
   constructor() {
     makeAutoObservable(this)
     makePersistable(this, {
       name: 'PokedexStore',
-      properties: [
-        '_favoriteList',
-        '_popularPokemons',
-        '_poplarPokemonsLastFetchUnixTime',
-      ],
+      properties: ['_favoriteList', '_popularPokemons'],
       storage: AsyncStorage,
       debugMode: false,
     })
@@ -42,17 +36,12 @@ class PokedexStore {
     return this._favoriteList?.map(item => item.id) || []
   }
 
-  setPopularPokemon(pokemon: PokemonDetailsFragment[]) {
+  setPopularPokemons(pokemon: PokemonDetailsFragment[]) {
     this._popularPokemons = pokemon
-    this._poplarPokemonsLastFetchUnixTime = Date.now()
   }
 
-  getPopularPokemon(): PokemonDetailsFragment[] | undefined {
+  getPopularPokemons(): PokemonDetailsFragment[] | undefined {
     return this._popularPokemons
-  }
-
-  getPopularPokemonsLastFetchUnix(): number {
-    return this._poplarPokemonsLastFetchUnixTime
   }
 }
 
