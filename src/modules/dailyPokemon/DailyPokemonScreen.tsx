@@ -5,7 +5,7 @@ import {ScrollView, StyleSheet} from 'react-native'
 import type {MainTabScreenProps} from '../../navigation/types'
 import {CreatureCard} from './components'
 import {getRandomInt} from './utils/getRandomId'
-import {pokedexStore} from '@/src/store/pokedex.store'
+import {getPokedexStore} from '@/src/store/pokedex.store'
 import {observer} from 'mobx-react-lite'
 import {formatPokemonForUI} from '@/src/utils'
 import {useTogglePokemonFavorite} from '../common/hooks'
@@ -13,7 +13,7 @@ import {useGetPokemonByIdLazyQuery} from '@/src/api/queries/pokemon.operations.g
 
 export const DailyPokemonScreen: FC<MainTabScreenProps<'DailyPokemon'>> =
   observer(({navigation}) => {
-    const favoriteItemsIds = pokedexStore.getFavoriteItemsIds()
+    const favoriteItemsIds = getPokedexStore().getFavoriteItemsIds()
 
     const {toggleFavorite} = useTogglePokemonFavorite()
 

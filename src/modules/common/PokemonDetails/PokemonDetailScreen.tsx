@@ -1,5 +1,5 @@
 import {RootStackScreenProps} from '@/src/navigation'
-import {AnimatedFavoriteIcon, GradientBackground} from '@/src/ui/components'
+import {GradientBackground} from '@/src/ui/components'
 import {colors} from '@/src/ui/theme'
 import {Ionicons} from '@expo/vector-icons'
 import * as Haptics from 'expo-haptics'
@@ -13,7 +13,7 @@ import {
 } from './components'
 import {formatPokemonForUI} from '@/src/utils'
 import {observer} from 'mobx-react-lite'
-import {pokedexStore} from '@/src/store/pokedex.store'
+import {getPokedexStore} from '@/src/store/pokedex.store'
 import {useTogglePokemonFavorite} from '../hooks'
 
 export const PokemonDetailScreen: FC<
@@ -21,7 +21,7 @@ export const PokemonDetailScreen: FC<
 > = observer(({navigation, route}) => {
   const {id, details} = route.params
 
-  const favoriteItemsIds = pokedexStore.getFavoriteItemsIds()
+  const favoriteItemsIds = getPokedexStore().getFavoriteItemsIds()
 
   const {toggleFavorite} = useTogglePokemonFavorite()
 

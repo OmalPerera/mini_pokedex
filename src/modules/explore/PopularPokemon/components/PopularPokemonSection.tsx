@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, Text, View, FlatList} from 'react-native'
+import {StyleSheet, Text, FlatList} from 'react-native'
 import {PopularPokemonCard} from './PopularPokemonCard'
 import Animated from 'react-native-reanimated'
 
@@ -73,7 +73,7 @@ export const PopularPokemonSection = ({isVisible}: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 8,
+    marginVertical: 8,
   },
   title: {
     fontSize: 22,

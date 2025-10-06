@@ -6,11 +6,19 @@ import {PokemonDetailsFragment} from '../api/queries/pokemon.generated'
 class PokedexStore {
   _favoriteList?: PokemonDetailsFragment[] = []
 
+  _popularPokemons?: PokemonDetailsFragment[] = []
+
+  _poplarPokemonsLastFetchUnixTime: number = 0
+
   constructor() {
     makeAutoObservable(this)
     makePersistable(this, {
       name: 'PokedexStore',
-      properties: ['_favoriteList'],
+      properties: [
+        '_favoriteList',
+        '_popularPokemons',
+        '_poplarPokemonsLastFetchUnixTime',
+      ],
       storage: AsyncStorage,
       debugMode: false,
     })
@@ -33,6 +41,26 @@ class PokedexStore {
   getFavoriteItemsIds(): number[] {
     return this._favoriteList?.map(item => item.id) || []
   }
+
+  setPopularPokemon(pokemon: PokemonDetailsFragment[]) {
+    this._popularPokemons = pokemon
+    this._poplarPokemonsLastFetchUnixTime = Date.now()
+  }
+
+  getPopularPokemon(): PokemonDetailsFragment[] | undefined {
+    return this._popularPokemons
+  }
+
+  getPopularPokemonsLastFetchUnix(): number {
+    return this._poplarPokemonsLastFetchUnixTime
+  }
 }
 
-export const pokedexStore = new PokedexStore()
+let pokedexStore: PokedexStore
+
+export function getPokedexStore(): PokedexStore {
+  if (!pokedexStore) {
+    pokedexStore = new PokedexStore()
+  }
+  return pokedexStore
+}

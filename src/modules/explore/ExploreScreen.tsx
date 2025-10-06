@@ -4,65 +4,26 @@ import {
   ListItemCard,
   SearchBox,
 } from '@/src/ui/components'
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {FlatList, StyleSheet, ActivityIndicator} from 'react-native'
 import {PopularPokemonSection} from './PopularPokemon/components/PopularPokemonSection'
-import {useSearchPokemonsLazyQuery} from '@/src/api/queries/pokemon.operations.generated'
-import {colors} from '@/src/ui/theme'
 import {MainTabScreenProps} from '@/src/navigation'
 import {observer} from 'mobx-react-lite'
-import {pokedexStore} from '@/src/store/pokedex.store'
+import {getPokedexStore} from '@/src/store/pokedex.store'
 import {useTogglePokemonFavorite} from '../common/hooks'
+import {usePokemonSearch} from '../common/hooks/usePokemonSearch'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
-const PAGINATION_LIMIT = 20
 export const ExploreScreen = observer(
   ({navigation}: MainTabScreenProps<'Explore'>) => {
-    const [searchString, setSearchString] = useState('')
+    const {bottom} = useSafeAreaInsets()
 
-    const [offset, setOffset] = useState(0)
+    const {searchString, setSearchString, handleLoadMore, data, loading} =
+      usePokemonSearch()
 
-    const favoriteItemsIds = pokedexStore.getFavoriteItemsIds()
+    const favoriteItemsIds = getPokedexStore().getFavoriteItemsIds()
 
     const {toggleFavorite} = useTogglePokemonFavorite()
-
-    const [searchPokemon, {data, loading, fetchMore}] =
-      useSearchPokemonsLazyQuery()
-
-    useEffect(() => {
-      searchPokemon({
-        variables: {
-          q: `%${searchString}%`,
-          limit: PAGINATION_LIMIT,
-          offset: 0,
-        },
-      })
-      setOffset(0)
-    }, [searchString, searchPokemon])
-
-    const handleLoadMore = () => {
-      if (loading) {
-        return
-      }
-
-      const newOffset = offset + PAGINATION_LIMIT
-      fetchMore({
-        variables: {
-          q: `%${searchString}%`,
-          limit: PAGINATION_LIMIT,
-          offset: newOffset,
-        },
-        updateQuery: (prev, {fetchMoreResult}) => {
-          if (!fetchMoreResult) {
-            return prev
-          }
-          return {
-            ...prev,
-            pokemon: [...prev.pokemon, ...fetchMoreResult.pokemon],
-          }
-        },
-      })
-      setOffset(newOffset)
-    }
 
     const handlePressItem = (id: number) => {
       navigation.navigate('PokemonDetailScreen', {
@@ -83,7 +44,10 @@ export const ExploreScreen = observer(
         <AppHeader />
         <SearchBox style={styles.searchBoxStyles} onSearch={setSearchString} />
         <FlatList
-          contentContainerStyle={styles.listViewStyles}
+          contentContainerStyle={[
+            styles.listViewStyles,
+            {paddingBottom: bottom},
+          ]}
           data={data?.pokemon}
           ListHeaderComponent={
             <PopularPokemonSection isVisible={!Boolean(searchString)} />
@@ -123,6 +87,6 @@ const styles = StyleSheet.create({
   loadingIndicator: {
     marginVertical: 20,
     alignSelf: 'center',
-    color: colors.primary_white,
+    color: 'white',
   },
 })

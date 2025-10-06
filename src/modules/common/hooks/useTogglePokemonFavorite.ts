@@ -1,5 +1,5 @@
 import {PokemonDetailsFragment} from '@/src/api/queries/pokemon.generated'
-import {pokedexStore} from '@/src/store/pokedex.store'
+import {getPokedexStore} from '@/src/store/pokedex.store'
 import * as Haptics from 'expo-haptics'
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
 }
 
 export const useTogglePokemonFavorite = () => {
+  const pokedexStore = getPokedexStore()
   const toggleFavorite = ({isFavorite, details}: Props) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     if (isFavorite) {

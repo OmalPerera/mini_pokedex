@@ -5,7 +5,7 @@ import {StyleSheet} from 'react-native'
 import {FavoriteListEmptyView, FavoriteListHeader} from './components'
 import {MainTabScreenProps} from '@/src/navigation/types'
 import {observer} from 'mobx-react-lite'
-import {pokedexStore} from '@/src/store/pokedex.store'
+import {getPokedexStore} from '@/src/store/pokedex.store'
 import {formatPokemonForUI} from '@/src/utils'
 import Animated, {LinearTransition} from 'react-native-reanimated'
 import * as Haptics from 'expo-haptics'
@@ -14,7 +14,7 @@ import {ListItemCard} from '@/src/ui/components'
 
 export const FavoritesScreen: FC<MainTabScreenProps<'Favorites'>> = observer(
   ({navigation}) => {
-    const favoriteList = pokedexStore.getFavoriteList()
+    const favoriteList = getPokedexStore().getFavoriteList()
 
     const {toggleFavorite} = useTogglePokemonFavorite()
 
