@@ -1,50 +1,59 @@
-# Welcome to your Expo app 👋
+# Mini Pokédex for Kids
+kid-friendly way to explore the world of Pokémon!
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Hey hey 👋, here are some information about the assignment scope selected by me. attached images are screenshots of the completed assignment.
 
-## Get started
+## Selected scope
 
-1. Install dependencies
+Scope for the assignment is the **Mini Pokedex** Application which includes the following:
 
-   ```bash
-   npm install
-   ```
+1. Daily Pokemon: A tab displaying a daily Pokemon.
+2. Pokemon Search: wildcard search for Pokemons and A list of popular Pokemons for exploration.
+3. Favorite Pokemons: kids can mark and view their favorite Pokemons.
+4. Pokemon Detail Screen: Detailed view for individual Pokemons, displaying characteristics, evolutions, and stats.
 
-2. Start the app
 
-   ```bash
-   npx expo start
-   ```
+![developed screens](https://github.com/OmalPerera/mini_pokedex/blob/main/__documentation__/github_banner.png)
 
-In the output, you'll find options to open the app in a
+App walkthrough - [https://github.com/OmalPerera/mini_pokedex/blob/main/__documentation__/demo_video.mov](https://github.com/OmalPerera/mini_pokedex/blob/main/__documentation__/demo_video.mov)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Get started with tech
+This is an [Expo](https://expo.dev) project.
 
-## Get a fresh project
+_Due to time constraints, the nature of the requirements, and development compatibility, I decided to proceed with the Exp project._
 
-When you're ready, run:
+Follow the steps to run the app
+1. clone the repo and navigate into the project
+2. Install the dependencies : `npm install`
+3. Start the app: `npx expo start`
 
-```bash
-npm run reset-project
-```
+### Tech stack
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+| Technology/Library       | Description  |
+|--------------------------|-------------------|
+|   | Developed using TypeScript|
+| @react-navigation/*      | For tab and stack navigation. [(navigationRoute)](src/navigation/NavigationRouter.tsx) |
+| MobX                     | For reactive state management. [(mobX store)](src/store/pokedex.store.ts) |
+| mobx-persist-store       | For persisting favorites between app kills.  |
+| graphql                  | For connecting with the server|
+| @apollo/rover            | For introspection and downloading the schema|
+| @graphql-codegen/*       | For automatically generating types from the schema, generating GraphQL React hooks from GraphQL query definitions and fragments. [(fragments)](src/api/queries/pokemon.gql) [(auto generated react hooks)](src/api/queries/pokemon.operations.generated.ts) |
+| @apollo/client           | To execute queries and in-memory caching. [(apollo client)](src/api/apollo-client.ts) |
+| react-native-reanimated  | For creating nice animations. |
+| expo-haptics             | For haptic feedback. |
 
-## Learn more
 
-To learn more about developing your project with Expo, look at the following resources:
+&nbsp;
+<a id="test_app"></a>
+## Testing the app
+- unit test done for utility functions using jest. use `npm test` to run jest tests
+- ES-Lint and Prettier have been set up with rules to ensure code quality.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
+#### Some final thoughts:
 
-Join our community of developers creating universal apps.
+- This API (https://graphql.pokeapi.co/v1beta2) has a rate limit of 200 requests/h. So I focused on caching, pre-loading, and persisting details for each Pokémon, and slightly increased the number of items per page to reduce server calls.
+- There is still much room for reach perfection, but I’m limited by the time. :)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+END -
