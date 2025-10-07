@@ -56,4 +56,4 @@ Follow the steps to run the app
 - This API (https://graphql.pokeapi.co/v1beta2) has a rate limit of 200 requests/h. So I focused on caching, pre-loading, and persisting details for each Pokémon, and slightly increased the number of items per page to reduce server calls.
 - There is still much room for reach perfection, but I’m limited by the time. :)
 
-END -
+END --
