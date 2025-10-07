@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native'
-import {colors} from '@/src/ui/theme'
+import {borderRadii, colors, spacing} from '@/src/ui/theme'
 
 interface Props {
   name: string
@@ -26,16 +26,16 @@ const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
     backgroundColor: colors.primary_white,
-    borderRadius: 16,
-    padding: 4,
+    borderRadius: borderRadii.r16,
+    padding: spacing.s4,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    marginVertical: 6,
-    marginHorizontal: 6,
+    marginVertical: spacing.s8,
+    marginHorizontal: spacing.s4,
   },
   imgBg: {
     backgroundColor: colors.grey_300,
-    borderRadius: 12,
+    borderRadius: borderRadii.r12,
     alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
     width: 60,
     aspectRatio: 1,
     resizeMode: 'contain',
-    marginBottom: 8,
+    marginBottom: spacing.s8,
   },
   pokemonName: {
-    marginTop: 4,
+    marginTop: spacing.s4,
     fontSize: 14,
     fontWeight: 'bold',
     color: colors.blue_900,

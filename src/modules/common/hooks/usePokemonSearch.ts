@@ -52,10 +52,23 @@ export const usePokemonSearch = () => {
     setOffset(newOffset)
   }
 
+  const handleClear = () => {
+    setSearchString('')
+    setOffset(0)
+    searchPokemon({
+      variables: {
+        q: '%%',
+        limit: ITEMS_PER_PAGE,
+        offset: 0,
+      },
+    })
+  }
+
   return {
     searchString,
     setSearchString,
     handleLoadMore,
+    handleClear,
     data,
     loading,
   }

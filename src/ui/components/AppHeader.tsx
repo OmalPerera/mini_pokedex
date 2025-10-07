@@ -1,17 +1,18 @@
-import { images } from '@/assets/images'
-import React, { FC } from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import {images} from '@/assets/images'
+import React, {FC} from 'react'
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {colors, spacing} from '../theme'
 
 interface AppHeaderProps {
-  onBackPress?: () => void;
+  onBackPress?: () => void
 }
 
-export const AppHeader: FC<AppHeaderProps> = ({ onBackPress }) => {
-  const { top } = useSafeAreaInsets()
+export const AppHeader: FC<AppHeaderProps> = ({onBackPress}) => {
+  const {top} = useSafeAreaInsets()
 
   return (
-    <View style={[styles.container, { marginTop: top }]}>
+    <View style={[styles.container, {marginTop: top}]}>
       <View style={styles.startContent}>
         {onBackPress && (
           <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
@@ -32,13 +33,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingTop: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    paddingHorizontal: spacing.s16,
+    paddingTop: spacing.s4,
+    shadowColor: colors.primary_black,
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 2,
-    elevation: 3,
   },
   startContent: {
     flex: 1,
@@ -53,10 +53,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   backButton: {
-    padding: 8,
+    padding: spacing.s8,
   },
   backButtonText: {
-    fontSize: 24,
+    fontSize: spacing.s24,
     fontWeight: 'bold',
   },
   logo: {
