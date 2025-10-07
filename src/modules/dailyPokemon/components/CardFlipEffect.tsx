@@ -7,6 +7,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated'
+import {CreatureCardBackface} from './CreatureCardBackface'
 
 const FLIP_ANIMATION_DURATION_MS = 800
 
@@ -54,8 +55,9 @@ export const CardFlipAnimation: FC<Props> = ({children, isLoading}) => {
           backAnimatedStyle,
           {backgroundColor: colors.blue_200},
         ]}
-        pointerEvents={isLoading ? 'auto' : 'none'}
-      />
+        pointerEvents={isLoading ? 'auto' : 'none'}>
+        <CreatureCardBackface />
+      </Animated.View>
     </View>
   )
 }

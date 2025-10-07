@@ -28,7 +28,6 @@ export const CreatureCard: FC<Props> = memo(
     onPressAnotherOne,
     isLoading,
   }) => {
-    console.log('CreatureCard', name)
     return (
       <CardFlipAnimation isLoading={isLoading}>
         <View

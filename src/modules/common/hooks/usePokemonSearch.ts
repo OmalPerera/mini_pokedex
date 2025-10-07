@@ -42,7 +42,10 @@ export const usePokemonSearch = () => {
         }
         return {
           ...prev,
-          pokemon: [...prev.pokemon, ...fetchMoreResult.pokemon],
+          pokemon: [
+            ...(prev.pokemon || []),
+            ...(fetchMoreResult.pokemon || []),
+          ],
         }
       },
     })
