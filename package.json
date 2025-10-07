@@ -7,6 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "test": "jest",
     "lint": "expo lint",
     "type-check": "tsc --noEmit",
     "pokeapi-schema": "npx -p @apollo/rover rover graph introspect https://graphql.pokeapi.co/v1beta2 > graphql/schema.graphql",
@@ -56,6 +57,9 @@
     "@graphql-codegen/typescript": "^5.0.1",
     "@graphql-codegen/typescript-operations": "^5.0.1",
     "@graphql-codegen/typescript-react-apollo": "^4.3.3",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^13.3.3",
+    "@types/jest": "^30.0.0",
     "@types/react": "~19.1.0",
     "@types/react-native": "^0.72.8",
     "@typescript-eslint/eslint-plugin": "^8.45.0",
@@ -67,8 +71,21 @@
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-react-native": "^5.0.0",
     "eslint-plugin-unused-imports": "^4.2.0",
+    "jest": "^30.2.0",
+    "jest-expo": "^54.0.12",
     "prettier": "^3.6.2",
+    "react-test-renderer": "^19.1.0",
     "typescript": "~5.9.2"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "preset": "jest-expo",
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(expo|@expo|expo-modules-core|react-native|@react-native|@react-navigation)/)"
+    ],
+    "testEnvironment": "node"
+  }
 }
