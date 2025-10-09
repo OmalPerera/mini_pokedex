@@ -4,6 +4,7 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack'
 import {PokemonDetailsFragment} from '../api/queries/pokemon.generated'
 
 export type RootStackParamList = {
+  LaunchScreen: undefined
   TabNavigator: undefined
   PokemonDetailScreen: {
     id: number

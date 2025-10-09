@@ -1,4 +1,6 @@
-import { registerRootComponent } from "expo";
-import App from "./src";
+import {registerRootComponent} from 'expo'
+import App from './src'
+import {LogBox} from 'react-native'
 
-registerRootComponent(App);
+LogBox.ignoreAllLogs(true)
+registerRootComponent(App)

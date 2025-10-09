@@ -23,6 +23,7 @@ export const colors = {
   red_600: '#4d1b14',
   red_700: '#FF1C1C',
   //blue
+  blue_50: '#D8F0F7',
   blue_100: '#9AD9E8',
   blue_200: '#3D97E6',
   blue_900: '#161F21',
