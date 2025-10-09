@@ -1,8 +1,7 @@
 import {AnimatedFavoriteIcon} from '@/src/ui/components'
-import {colors} from '@/src/ui/theme'
-import {Ionicons} from '@expo/vector-icons'
+import {colors, spacing} from '@/src/ui/theme'
 import React, {FC, memo} from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 
 interface Props {
   headerTitle?: string
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: spacing.s20,
   },
   title: {
     fontSize: 24,

@@ -1,4 +1,4 @@
-import {colors} from '@/src/ui/theme'
+import {borderRadii, colors} from '@/src/ui/theme'
 import {FC, JSX, useEffect} from 'react'
 import {StyleSheet, View} from 'react-native'
 import Animated, {
@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
     width: '95%',
   },
   card: {
-    borderRadius: 16,
-    padding: 0,
+    borderRadius: borderRadii.r16,
     width: '100%',
     height: '90%',
     alignItems: 'center',

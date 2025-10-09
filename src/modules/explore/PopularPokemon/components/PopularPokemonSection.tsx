@@ -4,7 +4,7 @@ import {PopularPokemonCard} from './PopularPokemonCard'
 import Animated from 'react-native-reanimated'
 import {PokemonDetailsFragment} from '@/src/api/queries/pokemon.generated'
 import {pickRandomItemsFromArray} from '@/src/utils'
-import {colors} from '@/src/ui/theme'
+import {colors, spacing} from '@/src/ui/theme'
 
 interface Props {
   isVisible?: boolean
@@ -41,12 +41,12 @@ export const PopularPokemonSection = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 8,
+    marginVertical: spacing.s8,
   },
   title: {
     fontSize: 22,
     fontWeight: 'bold',
-    marginBottom: 16,
+    marginBottom: spacing.s16,
     color: colors.blue_900,
   },
   row: {

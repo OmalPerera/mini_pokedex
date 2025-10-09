@@ -1,6 +1,6 @@
 import {RootStackScreenProps} from '@/src/navigation'
 import {GradientBackground} from '@/src/ui/components'
-import {colors} from '@/src/ui/theme'
+import {colors, spacing} from '@/src/ui/theme'
 import {Ionicons} from '@expo/vector-icons'
 import * as Haptics from 'expo-haptics'
 import React, {FC, useMemo} from 'react'
@@ -15,6 +15,7 @@ import {formatPokemonForUI} from '@/src/utils'
 import {observer} from 'mobx-react-lite'
 import {getPokedexStore} from '@/src/store/pokedex.store'
 import {useTogglePokemonFavorite} from '../hooks'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 export const PokemonDetailScreen: FC<
   RootStackScreenProps<'PokemonDetailScreen'>
@@ -24,6 +25,8 @@ export const PokemonDetailScreen: FC<
   const favoriteItemsIds = getPokedexStore().getFavoriteItemsIds()
 
   const {toggleFavorite} = useTogglePokemonFavorite()
+
+  const {top} = useSafeAreaInsets()
 
   const isFavorite = useMemo(
     () => favoriteItemsIds.includes(details?.id || 0),
@@ -45,7 +48,7 @@ export const PokemonDetailScreen: FC<
   return (
     <GradientBackground>
       <TouchableOpacity
-        style={styles.closeButton}
+        style={[styles.closeButton, {marginTop: top}]}
         hitSlop={24}
         onPress={handleClose}>
         <Ionicons name="close-circle" size={40} color={colors.blue_900} />
@@ -76,15 +79,15 @@ export const PokemonDetailScreen: FC<
 const styles = StyleSheet.create({
   content: {
     flexGrow: 1,
-    padding: 16,
+    padding: spacing.s16,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 64,
+    paddingBottom: spacing.s64,
   },
   closeButton: {
     position: 'absolute',
-    top: 16,
-    left: 16,
+    top: spacing.s16,
+    left: spacing.s16,
     zIndex: 1,
   },
 })

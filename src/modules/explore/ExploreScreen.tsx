@@ -16,6 +16,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {formatPokemonForUI} from '@/src/utils'
 import * as Haptics from 'expo-haptics'
 import {PokemonDetailsFragment} from '@/src/api/queries/pokemon.generated'
+import {colors, spacing} from '@/src/ui/theme'
 
 export const ExploreScreen = observer(
   ({navigation}: MainTabScreenProps<'Explore'>) => {
@@ -77,7 +78,7 @@ export const ExploreScreen = observer(
             )
           }}
           keyExtractor={item => item.id.toString()}
-          onEndReached={handleLoadMore}
+          onEndReached={() => data?.pokemon && handleLoadMore()}
           onEndReachedThreshold={0.5}
           ListFooterComponent={
             loading && searchString ? (
@@ -92,16 +93,16 @@ export const ExploreScreen = observer(
 
 const styles = StyleSheet.create({
   listViewStyles: {
-    padding: 16,
+    padding: spacing.s16,
   },
   searchBoxStyles: {
-    marginHorizontal: 16,
-    marginTop: 28,
-    marginBottom: 8,
+    marginHorizontal: spacing.s16,
+    marginTop: spacing.s28,
+    marginBottom: spacing.s8,
   },
   loadingIndicator: {
-    marginVertical: 20,
+    marginVertical: spacing.s20,
     alignSelf: 'center',
-    color: 'white',
+    color: colors.primary_white,
   },
 })

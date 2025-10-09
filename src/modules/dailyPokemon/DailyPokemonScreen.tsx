@@ -13,6 +13,7 @@ import {
   useFetchPopularPokemons,
 } from '../common/hooks'
 import {useGetPokemonsByIdsLazyQuery} from '@/src/api/queries/pokemon.operations.generated'
+import {spacing} from '@/src/ui/theme'
 
 export const DailyPokemonScreen: FC<MainTabScreenProps<'DailyPokemon'>> =
   observer(({navigation}) => {
@@ -88,7 +89,7 @@ export const DailyPokemonScreen: FC<MainTabScreenProps<'DailyPokemon'>> =
 const styles = StyleSheet.create({
   content: {
     flexGrow: 1,
-    padding: 16,
+    padding: spacing.s16,
     justifyContent: 'center',
     alignItems: 'center',
   },

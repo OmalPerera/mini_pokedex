@@ -1,4 +1,4 @@
-import {colors} from '@/src/ui/theme'
+import {borderRadii, colors, spacing} from '@/src/ui/theme'
 import React, {FC, memo} from 'react'
 import {
   ColorValue,
@@ -31,19 +31,18 @@ CardActionButton.displayName = 'CardActionButton'
 
 const styles = StyleSheet.create({
   buttonShadow: {
-    shadowColor: '#000',
+    shadowColor: colors.primary_black,
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 2,
-    elevation: 3,
   },
   button: {
     width: '80%',
-    paddingVertical: 15,
-    borderRadius: 72,
+    paddingVertical: spacing.s16,
+    borderRadius: borderRadii.r72,
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 15,
+    marginTop: spacing.s8,
+    marginBottom: spacing.s16,
   },
   buttonText: {
     color: 'white',

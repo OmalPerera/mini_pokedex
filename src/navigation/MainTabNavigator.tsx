@@ -4,26 +4,27 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import React from 'react'
 import {ExploreScreen, DailyPokemonScreen} from '../modules'
 import {FavoritesScreen} from '../modules/favorites/FavoriteScreen'
-import {colors} from '../ui/theme'
 import {TabBarButton} from './components'
 import type {MainTabParamList} from './types'
+import {useTheme} from '../ui/theme'
 
 const Tab = createBottomTabNavigator<MainTabParamList>()
 
 export function MainTabNavigator() {
+  const {colors, spacing} = useTheme()
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: colors.tint,
+        tabBarActiveTintColor: colors.grey_850,
         tabBarInactiveTintColor: colors.grey_700,
         headerShown: false,
         tabBarButton: TabBarButton,
         tabBarStyle: {
-          paddingTop: 6,
+          paddingTop: spacing.s8,
           backgroundColor: colors.primary_white,
         },
         tabBarLabelStyle: {
-          marginTop: 2,
+          marginTop: spacing.s2,
           fontSize: 12,
         },
       }}>

@@ -1,10 +1,6 @@
 export const colors = {
   primary_white: '#FFFFFF',
   primary_black: '#000000',
-  text: '#11181C',
-  background: '#fff',
-  tint: '#29272A',
-  icon: '#687076',
   //grey
   grey_100: '#ffffff',
   grey_200: '#f6f6f6',

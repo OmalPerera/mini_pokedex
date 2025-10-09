@@ -1,4 +1,4 @@
-import {colors} from '@/src/ui/theme'
+import {colors, spacing} from '@/src/ui/theme'
 import {memo} from 'react'
 import {StyleSheet, Text} from 'react-native'
 
@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: colors.blue_900,
-    marginVertical: 20,
+    marginVertical: spacing.s20,
   },
 })

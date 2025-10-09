@@ -1,6 +1,6 @@
 import {StatsFragment} from '@/src/api/queries/pokemon.generated'
 import {ProgressBar} from '@/src/ui/components'
-import {colors} from '@/src/ui/theme'
+import {borderRadii, colors, spacing} from '@/src/ui/theme'
 import {setOpacity} from '@/src/utils'
 import {StyleSheet, Text, View} from 'react-native'
 
@@ -37,31 +37,31 @@ const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
     backgroundColor: setOpacity(colors.primary_white)(0.35),
-    borderRadius: 16,
-    paddingVertical: 12,
-    marginTop: 20,
+    borderRadius: borderRadii.r16,
+    paddingVertical: spacing.s12,
+    marginTop: spacing.s20,
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: colors.blue_900,
-    marginBottom: 16,
-    marginHorizontal: 16,
+    marginBottom: spacing.s16,
+    marginHorizontal: spacing.s16,
   },
   section: {
     flex: 1,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 4,
+    paddingHorizontal: spacing.s16,
+    paddingVertical: spacing.s4,
   },
   progressBar: {
     flex: 0.6,
   },
   statName: {
     flex: 0.4,
-    marginEnd: 16,
+    marginEnd: spacing.s16,
   },
   value: {
     textAlign: 'right',

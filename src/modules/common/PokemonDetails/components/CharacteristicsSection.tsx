@@ -1,4 +1,4 @@
-import {colors} from '@/src/ui/theme'
+import {borderRadii, colors, spacing} from '@/src/ui/theme'
 import {setOpacity} from '@/src/utils'
 import {StyleSheet, Text, View} from 'react-native'
 
@@ -44,9 +44,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
     backgroundColor: setOpacity(colors.primary_white)(0.35),
-    borderRadius: 16,
-    paddingVertical: 16,
-    marginTop: 20,
+    borderRadius: borderRadii.r16,
+    paddingVertical: spacing.s16,
+    marginTop: spacing.s20,
   },
   section: {
     alignItems: 'center',
@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: colors.blue_900,
-    marginBottom: 12,
-    marginHorizontal: 16,
+    marginBottom: spacing.s12,
+    marginHorizontal: spacing.s16,
   },
   value: {
     fontSize: 16,

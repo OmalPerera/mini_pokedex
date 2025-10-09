@@ -15,7 +15,8 @@ Scope for the assignment is the **Mini Pokedex** Application which includes the 
 
 ![developed screens](https://github.com/OmalPerera/mini_pokedex/blob/main/__documentation__/github_banner.png)
 
-App walkthrough - [https://github.com/OmalPerera/mini_pokedex/blob/main/__documentation__/demo_video.mov](https://github.com/OmalPerera/mini_pokedex/blob/main/__documentation__/demo_video.mov)
+App walkthrough - [https://github.com/user-attachments/assets/625a0ec7-3ff1-4b93-a057-af3c034f1888
+](https://github.com/user-attachments/assets/625a0ec7-3ff1-4b93-a057-af3c034f1888)
 
 
 ## Get started with tech

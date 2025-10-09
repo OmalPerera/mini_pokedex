@@ -1,6 +1,5 @@
-import {FavoriteIcon, Pokeball} from '@/assets/svg'
 import {AnimatedFavoriteIcon} from '@/src/ui/components'
-import {colors} from '@/src/ui/theme'
+import {borderRadii, colors, spacing} from '@/src/ui/theme'
 import {setOpacity} from '@/src/utils'
 import {FC, memo} from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
     height: 200,
     aspectRatio: 1,
     resizeMode: 'contain',
-    marginTop: 32,
+    marginTop: spacing.s32,
   },
   pokemonName: {
     fontSize: 32,
@@ -55,47 +54,28 @@ const styles = StyleSheet.create({
   },
   pokemonNameContainer: {
     flexDirection: 'row',
-    gap: 8,
+    gap: spacing.s8,
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: spacing.s8,
     marginEnd: -FAVORITE_ICON_SIZE,
   },
   pokemonType: {
     fontSize: 18,
     color: colors.grey_800,
-    marginTop: 5,
-  },
-  badgeContainer: {
-    flexDirection: 'row',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  badge: {
-    borderRadius: 20,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    marginHorizontal: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  electricBadge: {
-    backgroundColor: '#F7D02C',
-  },
-  starBadge: {
-    backgroundColor: '#B6A136',
+    marginTop: spacing.s4,
   },
   aboutSection: {
     alignSelf: 'stretch',
     backgroundColor: setOpacity(colors.primary_white)(0.35),
-    borderRadius: 16,
-    padding: 16,
-    marginTop: 20,
+    borderRadius: borderRadii.r16,
+    padding: spacing.s16,
+    marginTop: spacing.s20,
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: colors.blue_900,
-    marginBottom: 10,
+    marginBottom: spacing.s8,
   },
   aboutText: {
     fontSize: 16,

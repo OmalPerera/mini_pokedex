@@ -1,4 +1,4 @@
-import {colors} from '@/src/ui/theme'
+import {colors, spacing} from '@/src/ui/theme'
 import React, {FC, memo} from 'react'
 import {
   Image,
@@ -50,13 +50,13 @@ const styles = StyleSheet.create({
   pokemonName: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginTop: 12,
-    marginBottom: 8,
+    marginTop: spacing.s12,
+    marginBottom: spacing.s8,
     color: colors.blue_900,
   },
   pokemonType: {
     fontSize: 16,
     color: colors.grey_800,
-    marginBottom: 20,
+    marginBottom: spacing.s20,
   },
 })

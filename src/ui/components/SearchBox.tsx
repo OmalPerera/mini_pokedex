@@ -1,6 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react'
-import {View, TextInput, StyleSheet, ViewStyle, StyleProp} from 'react-native'
-import {colors} from '../../ui/theme'
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  ViewStyle,
+  StyleProp,
+  TouchableOpacity,
+} from 'react-native'
+import {borderRadii, colors, spacing} from '../../ui/theme'
 import {Ionicons} from '@expo/vector-icons'
 
 interface SearchBoxProps {
@@ -50,6 +57,19 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
         maxLength={40}
         numberOfLines={1}
       />
+      {searchString.length > 0 && (
+        <TouchableOpacity
+          onPress={() => {
+            setSearchString('')
+          }}
+          hitSlop={24}>
+          <Ionicons
+            name="close-circle-sharp"
+            size={24}
+            color={colors.grey_700}
+          />
+        </TouchableOpacity>
+      )}
     </View>
   )
 }
@@ -59,13 +79,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.primary_white,
-    borderRadius: 16,
-    paddingHorizontal: 16,
+    borderRadius: borderRadii.r16,
+    paddingHorizontal: spacing.s16,
     height: 50,
   },
   input: {
     flex: 1,
-    marginLeft: 8,
+    marginLeft: spacing.s8,
     fontSize: 16,
     color: colors.blue_900,
   },

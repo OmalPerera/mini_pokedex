@@ -11,6 +11,7 @@ import Animated, {LinearTransition} from 'react-native-reanimated'
 import * as Haptics from 'expo-haptics'
 import {useTogglePokemonFavorite} from '../common/hooks'
 import {ListItemCard} from '@/src/ui/components'
+import {spacing} from '@/src/ui/theme'
 
 export const FavoritesScreen: FC<MainTabScreenProps<'Favorites'>> = observer(
   ({navigation}) => {
@@ -82,6 +83,6 @@ export const FavoritesScreen: FC<MainTabScreenProps<'Favorites'>> = observer(
 
 const styles = StyleSheet.create({
   listViewStyles: {
-    padding: 16,
+    padding: spacing.s16,
   },
 })

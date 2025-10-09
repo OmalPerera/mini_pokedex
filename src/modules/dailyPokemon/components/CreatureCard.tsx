@@ -1,4 +1,4 @@
-import {colors} from '@/src/ui/theme'
+import {borderRadii, colors, spacing} from '@/src/ui/theme'
 import {setOpacity} from '@/src/utils'
 import {FC, memo} from 'react'
 import {StyleSheet, View} from 'react-native'
@@ -66,14 +66,13 @@ CreatureCard.displayName = 'CreatureCard'
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 16,
-    padding: 20,
+    borderRadius: borderRadii.r16,
+    padding: spacing.s20,
     width: '100%',
     alignItems: 'center',
     shadowColor: colors.primary_black,
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 5,
+    shadowRadius: spacing.s8,
   },
 })

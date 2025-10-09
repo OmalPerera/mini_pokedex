@@ -1,4 +1,4 @@
-import {colors} from '@/src/ui/theme'
+import {borderRadii, colors, spacing} from '@/src/ui/theme'
 import {Ionicons} from '@expo/vector-icons'
 import {FC, memo} from 'react'
 import {Image, StyleSheet, Text, useWindowDimensions, View} from 'react-native'
@@ -49,15 +49,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   evolutionArrow: {
-    marginHorizontal: 8,
+    marginHorizontal: spacing.s8,
   },
   evolutionCard: {
     alignItems: 'center',
     alignSelf: 'stretch',
     backgroundColor: colors.primary_white,
-    paddingHorizontal: 10,
-    paddingVertical: 16,
-    borderRadius: 16,
+    paddingHorizontal: spacing.s12,
+    paddingVertical: spacing.s16,
+    borderRadius: borderRadii.r16,
   },
   evolutionImage: {
     width: 80,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: colors.grey_800,
-    marginTop: 4,
+    marginTop: spacing.s4,
   },
   evolutionCondition: {
     fontSize: 12,
