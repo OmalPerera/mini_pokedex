@@ -4,14 +4,15 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "test": "jest",
     "lint": "expo lint",
     "type-check": "tsc --noEmit",
     "pokeapi-schema": "npx -p @apollo/rover rover graph introspect https://graphql.pokeapi.co/v1beta2 > graphql/schema.graphql",
-    "codegen": "graphql-codegen --config graphql-codegen.ts"
+    "codegen": "graphql-codegen --config graphql-codegen.ts",
+    "test-e2e": "maestro test .maestro/first_test.yaml"
   },
   "dependencies": {
     "@apollo/client": "^4.0.7",

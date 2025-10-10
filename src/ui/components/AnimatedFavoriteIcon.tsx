@@ -21,9 +21,19 @@ export const AnimatedFavoriteIcon: FC<Props> = ({
     <Animated.View entering={isFavorite ? ZoomIn : undefined} style={style}>
       <TouchableOpacity hitSlop={24} onPress={onPressFavorite}>
         {isFavorite ? (
-          <Ionicons name="heart" size={size} color={colors.red_550} />
+          <Ionicons
+            name="heart"
+            size={size}
+            color={colors.red_550}
+            testID="HeartIcon"
+          />
         ) : (
-          <Ionicons name="heart-outline" size={size} color={colors.grey_950} />
+          <Ionicons
+            name="heart-outline"
+            size={size}
+            color={colors.grey_950}
+            testID="HeartIcon"
+          />
         )}
       </TouchableOpacity>
     </Animated.View>
