@@ -1,0 +1,56 @@
+appId: com.omal.pokepals
+---
+- launchApp
+- assertVisible: 'Daily Pokémon'
+
+# Tap "Another One!" to fetch a new Pokémon
+- tapOn: 'Another One!'
+- extendedWaitUntil:
+    visible: 'Another One!'
+    timeout: 10000
+
+# Tap the favorite icon (heart outline or filled heart)
+- tapOn:
+    id: 'HeartIcon'
+- assertVisible: 
+
+# Tap "Learn More" to navigate to the detail screen
+- tapOn: Learn More
+
+- assertVisible: About
+- assertVisible: Height
+- assertVisible: Evolution Chain
+- scrollUntilVisible:
+    element:
+      text: Stats
+
+# Go back to the DailyPokemonScreen
+- tapOn: 
+
+- tapOn: Explore, tab, 2 of 3
+- tapOn:
+    point: 29%,32%
+
+- assertVisible: About
+- assertVisible: Height
+- scrollUntilVisible:
+    element:
+      text: Stats
+
+# Go back to the DailyPokemonScreen
+- tapOn: 
+
+- tapOn: Search Pokémon...
+- inputText: Pi
+
+- tapOn: caterpie, Bug, 
+- extendedWaitUntil:
+    notVisible:
+      id: elementId
+    timeout: 10000
+
+
+- tapOn: 
+
+- tapOn: Favorites, tab, 3 of 3
+

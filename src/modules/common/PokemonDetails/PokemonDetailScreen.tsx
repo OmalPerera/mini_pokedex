@@ -50,7 +50,8 @@ export const PokemonDetailScreen: FC<
       <TouchableOpacity
         style={[styles.closeButton, {marginTop: top}]}
         hitSlop={24}
-        onPress={handleClose}>
+        onPress={handleClose}
+        testID="detailsCloseButton">
         <Ionicons name="close-circle" size={40} color={colors.blue_900} />
       </TouchableOpacity>
       <ScrollView contentContainerStyle={styles.content}>
